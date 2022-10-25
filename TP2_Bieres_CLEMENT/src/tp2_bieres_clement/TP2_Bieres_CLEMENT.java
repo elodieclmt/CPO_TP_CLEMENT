@@ -38,6 +38,9 @@ public class TP2_Bieres_CLEMENT {
     BouteilleBiere autreBiere3 = new BouteilleBiere("Heinken", 7.2 , "ami");
     
     autreBiere3.lireEtiquette();
+    
+    uneBiere.Décapsuler();
+    System.out.println("La bière est " + uneBiere.ouverte );
     }
     
 
