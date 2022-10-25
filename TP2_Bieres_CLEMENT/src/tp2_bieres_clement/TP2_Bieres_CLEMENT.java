@@ -16,7 +16,7 @@ public class TP2_Bieres_CLEMENT {
     public static void main(String[] args) {
         // TODO code application logic here
       BouteilleBiere uneBiere = new BouteilleBiere("Cuvée des trolls",
-        7.0 ,"Dubuisson") ;
+        7.0 ,"Dubuisson" + false) ;
         //uneBiere.nom = "Cuvée des trolls";
         //uneBiere.degreAlcool = 7.0 ;
         //uneBiere.brasserie = "Dubuisson" ;  
@@ -24,23 +24,26 @@ public class TP2_Bieres_CLEMENT {
         
         uneBiere.lireEtiquette();
         
-    BouteilleBiere autreBiere = new BouteilleBiere("Leffe", 6.6 , "Abbaye de Leffe");
+    BouteilleBiere autreBiere = new BouteilleBiere("Leffe", 6.6 , "Abbaye de Leffe" + true);
         //autreBiere.nom = "Leffe";
         //autreBiere.degreAlcool = 6.6 ;
         //autreBiere.brasserie = "Abbaye de Leffe" ;  
         
         autreBiere.lireEtiquette();
         
-        BouteilleBiere autreBiere2 = new BouteilleBiere("Corana", 6.4 , "bio");
+        BouteilleBiere autreBiere2 = new BouteilleBiere("Corana", 6.4 , "bio" + false);
         
         autreBiere2.lireEtiquette();
         
-    BouteilleBiere autreBiere3 = new BouteilleBiere("Heinken", 7.2 , "ami");
+    BouteilleBiere autreBiere3 = new BouteilleBiere("Heinken", 7.2 , "ami" + true);
     
     autreBiere3.lireEtiquette();
     
     uneBiere.Décapsuler();
     System.out.println("La bière est " + uneBiere.ouverte );
+    System.out.println(uneBiere) ;
+    System.out.println(autreBiere) ;
+    uneBiere.Décapsuler();
     }
     
 
