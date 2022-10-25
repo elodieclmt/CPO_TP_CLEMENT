@@ -17,20 +17,27 @@ public class TP2_Bieres_CLEMENT {
         // TODO code application logic here
       BouteilleBiere uneBiere = new BouteilleBiere("Cuvée des trolls",
         7.0 ,"Dubuisson") ;
-        uneBiere.nom = "Cuvée des trolls";
-        uneBiere.degreAlcool = 7.0 ;
-        uneBiere.brasserie = "Dubuisson" ;  
-        uneBiere.ouverte = false;
+        //uneBiere.nom = "Cuvée des trolls";
+        //uneBiere.degreAlcool = 7.0 ;
+        //uneBiere.brasserie = "Dubuisson" ;  
+        //uneBiere.ouverte = false;
         
         uneBiere.lireEtiquette();
         
     BouteilleBiere autreBiere = new BouteilleBiere("Leffe", 6.6 , "Abbaye de Leffe");
-        autreBiere.nom = "Leffe";
-        autreBiere.degreAlcool = 6.6 ;
-        autreBiere.brasserie = "Abbaye de Leffe" ;  
+        //autreBiere.nom = "Leffe";
+        //autreBiere.degreAlcool = 6.6 ;
+        //autreBiere.brasserie = "Abbaye de Leffe" ;  
         
         autreBiere.lireEtiquette();
+        
+        BouteilleBiere autreBiere2 = new BouteilleBiere("Corana", 6.4 , "bio");
+        
+        autreBiere2.lireEtiquette();
+        
+    BouteilleBiere autreBiere3 = new BouteilleBiere("Heinken", 7.2 , "ami");
     
+    autreBiere3.lireEtiquette();
     }
     
 
