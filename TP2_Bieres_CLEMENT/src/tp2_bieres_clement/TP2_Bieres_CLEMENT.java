@@ -16,11 +16,17 @@ public class TP2_Bieres_CLEMENT {
     public static void main(String[] args) {
         // TODO code application logic here
       BouteilleBiere uneBiere = new BouteilleBiere() ;
-   uneBiere.nom = "Cuvée des trolls";
-   uneBiere.degreAlcool = 7.0 ;
-   uneBiere.brasserie = "Dubuisson" ;  
-   uneBiere.ouverte = false;
-   
+        uneBiere.nom = "Cuvée des trolls";
+        uneBiere.degreAlcool = 7.0 ;
+        uneBiere.brasserie = "Dubuisson" ;  
+        uneBiere.ouverte = false;
+        uneBiere.lireEtiquette();
+    BouteilleBiere uneBiere2 = new BouteilleBiere();
+        uneBiere2.nom = "Leffe";
+        uneBiere2.degreAlcool = 6.6 ;
+        uneBiere2.brasserie = "Dubuisson" ;  
+        uneBiere2.ouverte = false;
+    
     }
     
 
