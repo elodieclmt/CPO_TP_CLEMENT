@@ -11,15 +11,16 @@ import java.util.Scanner;
  *
  * @author Elodie
  */
-public class Convertisseur {
+public class Convertisseur {  //création de la classe
  
     int nbConversions;
     
     
-    public Convertisseur () {
+    public Convertisseur () { //initialisation
 nbConversions = 0 ;
 
 }
+    //Création des différentes méthodes de converstion
     public double CelciusVersKelvin(double CVK){
         CVK = CVK + 273.15; 
         nbConversions += 1;
@@ -56,11 +57,12 @@ nbConversions = 0 ;
         return KVF;
     }   
      
-    @Override
+    @Override  //méthode permettant le renvoie des informations souhaiter avec une certaines mise en forme
 public String toString () {
 return "nb de conversions "+ nbConversions;
 }
-public int Choisir(){ 
+public int Choisir(){ //création d'un constructeur permettant à l'utilisateur d'avoir
+                      //accés à un menu pour choisir la conversion qu'il souhaite
 System.out.println("1: Celcius Vers Kelvin \n"+ "2: Kelvin Vers Clescius \n"
               + "3: Farenheit Vers Celcius \n"+ "4: Celcius Vers Farenheit \n"
               + "5: Farenheit Vers Kelvin \n"+ "6: Kelvin Vers Farenheit" );  

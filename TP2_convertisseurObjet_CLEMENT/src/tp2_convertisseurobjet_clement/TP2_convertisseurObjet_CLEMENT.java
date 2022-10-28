@@ -19,7 +19,10 @@ public class TP2_convertisseurObjet_CLEMENT {
         // TODO code application logic here
         
         Convertisseur premiernb = new Convertisseur();
+        //referencement de l'objet permiernb
         
+        //utilisation des methode pour differente conversion avec l'affichage des
+        //résultat pour verifer la fiabilité des methodes
         double result1 = premiernb.CelciusVersFarenheit(4);
         System.out.println(result1);
         double result2 = premiernb.CelciusVersKelvin(100);
@@ -37,7 +40,9 @@ public class TP2_convertisseurObjet_CLEMENT {
         System.out.println(deuxiemenb);
         
         Convertisseur ConverChoisit = new Convertisseur();
-        
+       
+      //utilisation du menu creer dans la classe + possibilité pour l'utilisateur
+      //de rentrer la veleur qu'il souhaite convertir grace à Scanner
       Scanner sc = new Scanner(System.in);
       double nombre = sc.nextDouble();
       int Choix = ConverChoisit.Choisir();
