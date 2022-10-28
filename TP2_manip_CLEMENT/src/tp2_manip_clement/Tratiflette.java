@@ -9,7 +9,7 @@ package tp2_manip_clement;
  *
  * @author Elodie
  */
-public class Tratiflette {
+public class Tratiflette { //création de la classe qui permettra de connaitre les calories
     
     int nbCalories;
     

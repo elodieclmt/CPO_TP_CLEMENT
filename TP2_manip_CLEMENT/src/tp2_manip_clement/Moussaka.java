@@ -8,7 +8,7 @@ package tp2_manip_clement;
  *
  * @author Elodie
  */
-public class Moussaka {
+public class Moussaka {  //création de la classe qui permettra de connaitre les calories
  
     int nbCalories;
     
