@@ -45,6 +45,18 @@ assiette1.nbCalories) ;
 System.out.println("nb de calories de Assiette 2 : " +
 assiette2.nbCalories) ;
 
+//Moussaka assiette666 = assiette1 ;
+//Moussaka assiette667 = new Tartiflette() ;
+//Les deux sont fausse car il n'y a pas le paramètre d'entré nbCalories
+//+ dans la deuxième il faudrait qu'il y est Moussaka à la place de Tratiflette
+// Donc non on ne peut pas creer un objet qui appartient à une classe et l'associer à une autre classe
+
+Moussaka tabMoussaka[] = new Moussaka [10];
+
+for (int i=0; i <= tabMoussaka.length; i++) {
+    
+    tabMoussaka[i] = new Moussaka (i+2576);
+    }
     }
     
 }
