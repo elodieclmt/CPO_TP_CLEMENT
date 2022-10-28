@@ -48,6 +48,10 @@ bob.liste_voitures[1] = une2008;
         uneAutreClio.proprietaire = reno;
         
         System.out.println(bob.toString() + reno.toString());
+        
+        Voiture testvoiture = new Voiture( "RS3", "Audi",294);
+        bob.ajouter_voiture(testvoiture);
+        System.out.println(bob.toString() + testvoiture.toString());
     }
     
 }

@@ -25,7 +25,24 @@ public class Personne {
     @Override
 public String toString () {
 return (" Prénom: "+Prenom+" Nom: "+Nom+" Nombre de voiture: "+nbVoitures);
-
-}
 }
 
+public boolean ajouter_voiture(Voiture voiture_a_ajouter) {     
+    
+        //on verifie que la personne n'a pas déja 3 voitures et que la voiture 
+        //n'a pas été volé
+        if (nbVoitures < 3 & voiture_a_ajouter.proprietaire == null){ 
+            
+            //on vérifie s'il y y a un emplacement libre et où il se situe pour mettre la voiture
+            for(int k = 0; k < 3; k ++){    
+              if(liste_voitures[k] == null){
+                    liste_voitures[k] = voiture_a_ajouter;
+                    nbVoitures ++;
+                    voiture_a_ajouter.proprietaire = this;
+                    return true;          
+                }                       //Si la condition est respectée alors on
+            }                          // renvoie vrai sinon faux 
+        }return false; 
+}
+
+}
