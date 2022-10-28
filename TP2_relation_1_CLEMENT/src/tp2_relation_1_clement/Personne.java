@@ -12,15 +12,20 @@ public class Personne {
   
     String Nom;
     String Prenom;
+    int nbVoitures ;
+    Voiture [] liste_voitures ;
     
     public  Personne(String Nom1, String Prenom1){
      Nom=Nom1;
      Prenom=Prenom1;
+     liste_voitures = new Voiture [3] ;
+     nbVoitures=0;
     }
     
     @Override
 public String toString () {
-return ("prénom: "+Prenom+" Nom: "+Nom);
+return ("prénom: "+Prenom+" Nom: "+Nom+"Nombre de voiture "+nbVoitures);
+
 }
 }
 
