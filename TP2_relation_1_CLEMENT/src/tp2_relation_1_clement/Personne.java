@@ -9,5 +9,18 @@ package tp2_relation_1_clement;
  * @author Elodie
  */
 public class Personne {
+  
+    String Nom;
+    String Prenom;
     
+    public  Personne(String Nom1, String Prenom1){
+     Nom=Nom1;
+     Prenom=Prenom1;
+    }
+    
+    @Override
+public String toString () {
+return ("prénom: "+Prenom+" Nom: "+Nom);
 }
+}
+
