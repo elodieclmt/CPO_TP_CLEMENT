@@ -10,5 +10,9 @@ package tp2_manip_clement;
  */
 public class Moussaka {
  
+    int nbCalories;
     
+    public Moussaka(int Kcal){
+        nbCalories=Kcal;
+    }
 }

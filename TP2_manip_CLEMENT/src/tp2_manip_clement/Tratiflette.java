@@ -11,4 +11,9 @@ package tp2_manip_clement;
  */
 public class Tratiflette {
     
+    int nbCalories;
+    
+    public Tratiflette(int Kcal){
+        nbCalories=Kcal;
+    }
 }
