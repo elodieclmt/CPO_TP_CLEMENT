@@ -24,7 +24,7 @@ public class Personne {
     
     @Override
 public String toString () {
-return ("prénom: "+Prenom+" Nom: "+Nom+"Nombre de voiture "+nbVoitures);
+return (" Prénom: "+Prenom+" Nom: "+Nom+" Nombre de voiture: "+nbVoitures);
 
 }
 }

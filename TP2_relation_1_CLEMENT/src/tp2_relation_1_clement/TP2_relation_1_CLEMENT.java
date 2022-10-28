@@ -35,7 +35,19 @@ System.out.println("liste des voitures disponibles "+ uneClio +
         
         System.out.println("la premiere voiture de Bob est " + bob.liste_voitures[0] ) ;
 
-
+bob.liste_voitures[1] = une2008;
+        bob.nbVoitures ++;
+        une2008.proprietaire = bob;
+        
+        reno.liste_voitures[0] = uneMicra;
+        reno.nbVoitures ++;
+        uneMicra.proprietaire = reno;
+        
+        reno.liste_voitures[1] = uneAutreClio;
+        reno.nbVoitures ++;
+        uneAutreClio.proprietaire = reno;
+        
+        System.out.println(bob.toString() + reno.toString());
     }
     
 }
