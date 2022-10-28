@@ -4,6 +4,8 @@
  */
 package tp2_convertisseurobjet_clement;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Elodie
@@ -33,6 +35,35 @@ public class TP2_convertisseurObjet_CLEMENT {
         double result5 = deuxiemenb.FarenheitVersCelcius(80);
         System.out.println(result5);
         System.out.println(deuxiemenb);
+        
+        Convertisseur ConverChoisit = new Convertisseur();
+        
+      Scanner sc = new Scanner(System.in);
+      double nombre = sc.nextDouble();
+      int Choix = ConverChoisit.Choisir();
+      if(Choix==1){
+          double nbfinal=ConverChoisit.CelciusVersKelvin(nombre);
+          System.out.println(nbfinal);
+      }
+      else if(Choix==2){
+          double nbfinal=ConverChoisit.KelvinVersClescius(nombre);
+          System.out.println(nbfinal);
+      }
+      else if(Choix==3){
+          double nbfinal=ConverChoisit.FarenheitVersCelcius(nombre);
+          System.out.println(nbfinal);
+      }
+      else if(Choix==4){
+          double nbfinal=ConverChoisit.CelciusVersFarenheit(nombre);
+          System.out.println(nbfinal);    
+        }
+      else if(Choix==5){
+          double nbfinal=ConverChoisit.FarenheitVersKelvin(nombre);
+          System.out.println(nbfinal);   
+      }
+      else if(Choix==6){
+          double nbfinal=ConverChoisit.KelvinVersFarenheit(nombre);
+          System.out.println(nbfinal);}
         
     }
     

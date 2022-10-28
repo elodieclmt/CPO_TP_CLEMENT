@@ -1,5 +1,7 @@
 package tp2_convertisseurobjet_clement;
 
+import java.util.Scanner;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -57,5 +59,14 @@ nbConversions = 0 ;
     @Override
 public String toString () {
 return "nb de conversions "+ nbConversions;
+}
+public int Choisir(){ 
+System.out.println("1: Celcius Vers Kelvin \n"+ "2: Kelvin Vers Clescius \n"
+              + "3: Farenheit Vers Celcius \n"+ "4: Celcius Vers Farenheit \n"
+              + "5: Farenheit Vers Kelvin \n"+ "6: Kelvin Vers Farenheit" );  
+      
+      Scanner sc = new Scanner (System.in);
+      int Choix = sc.nextInt();
+return Choix;
 }
 }
