@@ -17,17 +17,12 @@ public class TP2_Bieres_CLEMENT {
         // TODO code application logic here
       BouteilleBiere uneBiere = new BouteilleBiere("Cuvée des trolls",
         7.0 ,"Dubuisson" + false) ;
-        //uneBiere.nom = "Cuvée des trolls";
-        //uneBiere.degreAlcool = 7.0 ;
-        //uneBiere.brasserie = "Dubuisson" ;  
-        //uneBiere.ouverte = false;
+        //referencenement de l'objet uneBiere
         
         uneBiere.lireEtiquette();
-        
+        //utilisation d'une méthode creer dans la classe
     BouteilleBiere autreBiere = new BouteilleBiere("Leffe", 6.6 , "Abbaye de Leffe" + true);
-        //autreBiere.nom = "Leffe";
-        //autreBiere.degreAlcool = 6.6 ;
-        //autreBiere.brasserie = "Abbaye de Leffe" ;  
+          //referencenement de l'objet uneBiere
         
         autreBiere.lireEtiquette();
         
@@ -40,10 +35,12 @@ public class TP2_Bieres_CLEMENT {
     autreBiere3.lireEtiquette();
     
     uneBiere.Décapsuler();
+    
     System.out.println("La bière est " + uneBiere.ouverte );
     System.out.println(uneBiere) ;
     System.out.println(autreBiere) ;
     uneBiere.Décapsuler();
+    //utilisation et verification de la methode decapsuler
     }
     
 
