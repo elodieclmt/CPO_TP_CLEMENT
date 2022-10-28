@@ -15,20 +15,21 @@ public class TP2_relation_1_CLEMENT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-Voiture uneClio = new Voiture ("Clio", "Renault", 5 ) ;
-        
+ 
+        //referencment des objet Voiture
+Voiture uneClio = new Voiture ("Clio", "Renault", 5 ) ;        
 Voiture uneAutreClio = new Voiture ("Clio", "Renault", 5 ) ;
 Voiture une2008 = new Voiture ("2008", "Peugeot", 6 ) ;
 Voiture uneMicra = new Voiture ("Micra", "Nissan", 4 ) ;
 
+//referencement des objet Presonne
 Personne bob = new Personne("Bobby", "Sixkiller");
 Personne reno = new Personne("Reno", "Raines");
 
 System.out.println("liste des voitures disponibles "+ uneClio +
 "\n" + uneAutreClio + "\n" + une2008 + "\n" + uneMicra ) ;
 
-
+//Ajout maunelle d'une voiture pour la personne Bob puis Reno
         bob.liste_voitures[0] = uneClio ;
         bob.nbVoitures = 1;
         uneClio.proprietaire = bob;
@@ -49,6 +50,8 @@ bob.liste_voitures[1] = une2008;
         
         System.out.println(bob.toString() + reno.toString());
         
+        //Referencement d'un nouvel objet Voiture + vérification de la méthode
+        //ajouter_voiture
         Voiture testvoiture = new Voiture( "RS3", "Audi",294);
         bob.ajouter_voiture(testvoiture);
         System.out.println(bob.toString() + testvoiture.toString());

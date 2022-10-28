@@ -8,25 +8,27 @@ package tp2_relation_1_clement;
  *
  * @author Elodie
  */
-public class Personne {
+public class Personne { //création de la class
   
     String Nom;
     String Prenom;
     int nbVoitures ;
-    Voiture [] liste_voitures ;
+    Voiture [] liste_voitures ;  //création d'un tableau vide (reserve de place)
     
     public  Personne(String Nom1, String Prenom1){
      Nom=Nom1;
      Prenom=Prenom1;
-     liste_voitures = new Voiture [3] ;
+     liste_voitures = new Voiture [3] ; //initialisation du tableau à 3 case
      nbVoitures=0;
     }
     
-    @Override
+    @Override   //méthode permettant la mise en forme d'un return
 public String toString () {
 return (" Prénom: "+Prenom+" Nom: "+Nom+" Nombre de voiture: "+nbVoitures);
 }
 
+//Méthode qui permet de valide ou non l'ajoute d'une nouvelle voiture + si cela
+//est possible alors la voiture est ajouter dans la case vide
 public boolean ajouter_voiture(Voiture voiture_a_ajouter) {     
     
         //on verifie que la personne n'a pas déja 3 voitures et que la voiture 
