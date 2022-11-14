@@ -10,5 +10,29 @@ package tp3_clement;
  */
 public class Baton extends Arme {
      
-    int age;
+    private int age;
+    public Baton (String Nom , int nb , int Age){
+       super(Nom , nb);
+       if (Age>0){
+           age = Age;
+       }else{
+           age = 0;
+       }
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age>0){
+        this.age = age;
+    }}
+
+    @Override
+    public String toString() {
+        return "Baton{" + "age=" + age + '}';
+    }
+    
+    
 }
