@@ -18,7 +18,7 @@ public class Arme {
     if(nb>0){
         NiveauAttaque =1;
     }
-    if(nb<=100){
+    if(nb<100){
         NiveauAttaque =nb;
     }else{
         NiveauAttaque =100;
@@ -34,8 +34,9 @@ public class Arme {
     }
 
     public void setNiveauAttaque(int NiveauAttaque) {
+        if (NiveauAttaque>0){
         this.NiveauAttaque = NiveauAttaque;
-    }
+    }}
     
    
     @Override
