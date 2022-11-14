@@ -18,6 +18,8 @@ public class Epee extends Arme{
            indice = indice;
        }else{
            indice = 0;
+       }if(indice>100){
+           indice=100;
        }
         this.indice = indice;
     }
