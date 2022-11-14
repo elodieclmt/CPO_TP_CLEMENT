@@ -18,6 +18,7 @@ public class Baton extends Arme {
        }else{
            age = 0;
        }
+       this.age = Age;
     }
 
     public int getAge() {
