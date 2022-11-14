@@ -15,6 +15,12 @@ public class TP3_CLEMENT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Epee exp = new Epee(5, "Excalibur",7);
+        Epee dur = new Epee(7, "Durandal", 4);
+        
+        Baton chene = new Baton("Chêne", 4, 5);
+        Baton charme = new Baton("Charme", 5, 6);
     }
     
 }
