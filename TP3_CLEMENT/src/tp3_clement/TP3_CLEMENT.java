@@ -31,6 +31,12 @@ public class TP3_CLEMENT {
         Tab.add(chene);
         Tab.add(charme);
         
+        //Affichage des éléments du tableau
+        int taille = Tab.size();
+        
+        for (int i=0; i<=taille ; i++){
+            System.out.println("votre amre est : " + Tab.get(i));
+        }
     }
     
 }
