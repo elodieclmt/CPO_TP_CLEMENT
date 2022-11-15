@@ -13,6 +13,8 @@ import java.util.ArrayList;
  * @author Elodie
  */
 public class Personnage {
+    public static int nbPersonnages=0; //attribut propre à la classe qui
+                                       //compte le nombre de personnages créer
     
     private String Nom;
     private int NiveauVie;  //permet de mettre l'attibut en privé
@@ -32,6 +34,7 @@ public class Personnage {
     }  
         this.Nom = Nom;
         this.NiveauVie = NiveauVie;
+        nbPersonnages++;
     }
 
     public String getNom() {
