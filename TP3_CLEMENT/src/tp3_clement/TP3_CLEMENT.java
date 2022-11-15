@@ -4,6 +4,9 @@
  */
 package tp3_clement;
 
+import Personnages.guerrier;
+import Personnages.magicien;
+import Personnages.Personnage;
 import Armes.Epee;
 import Armes.Baton;
 import Armes.Arme;
@@ -38,16 +41,30 @@ public class TP3_CLEMENT {
         //Affichage des éléments du tableau
         int taille = Tab.size();
         
-        for (int i=0; i<=taille ; i++){
+        for (int i=0; i<taille ; i++){
             System.out.println("votre amre est : " + Tab.get(i));
         }
         
+        //création des personnages
         magicien Gand = new magicien (true , "Gandalf", 65);
         magicien Garci = new magicien (false , "Garcimore", 44);
         
         guerrier Con = new guerrier (false , "Conan", 78);
         guerrier Lan = new guerrier (true , "Lannister", 45);
         
+        
+        ArrayList<Personnage> Tab2 = new ArrayList<Personnage>(); //création tableau dynamique
+        Tab2.add(Gand);
+        Tab2.add(Garci);
+        Tab2.add(Con);
+        Tab2.add(Lan);
+        
+        //Affichage des éléments du tableau
+        int taille2 = Tab2.size();
+        
+        for (int j=0; j<taille2 ; j++){
+            System.out.println("votre Personnage est : " + Tab2.get(j));
+        }
     }
     
 }
