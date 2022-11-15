@@ -48,16 +48,17 @@ public class Personnage {
 
     @Override
     public String toString() {
-        return "Personnage{" + "Nom=" + Nom + ", NiveauVie=" + NiveauVie + '}';
+        return "Personnage{" + "Nom=" + Nom + ", NiveauVie=" + NiveauVie + "arme en mains : "+ arme_en_main +'}';
     }
     
-   public void gestion(Arme arme){
+   public void gestion(Arme arme){  //methode qui ajoute des armes
        if (inventaire.size()<5){
            inventaire.add(arme);
        }   
    }
    
-   public void equiper (Arme arme){
+   public void equiper (Arme arme){  //méthodes qui vérifie qi l'arme voulu
+                                            //existe
       boolean result =  inventaire.contains(arme);
 if (result == true) {
    System.out.println("Votre arme en mains est "+ arme);  
