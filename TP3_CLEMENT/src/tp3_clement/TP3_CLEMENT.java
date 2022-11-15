@@ -41,6 +41,13 @@ public class TP3_CLEMENT {
         for (int i=0; i<=taille ; i++){
             System.out.println("votre amre est : " + Tab.get(i));
         }
+        
+        magicien Gand = new magicien (true , "Gandalf", 65);
+        magicien Garci = new magicien (false , "Garcimore", 44);
+        
+        guerrier Con = new guerrier (false , "Conan", 78);
+        guerrier Lan = new guerrier (true , "Lannister", 45);
+        
     }
     
 }
