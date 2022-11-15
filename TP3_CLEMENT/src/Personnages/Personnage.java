@@ -48,7 +48,7 @@ public class Personnage {
 
     @Override
     public String toString() {
-        return "Personnage{" + "Nom=" + Nom + ", NiveauVie=" + NiveauVie + "arme en mains : "+ arme_en_main +'}';
+        return "Personnage{" + "Nom=" + Nom + ", NiveauVie=" + NiveauVie + " arme en mains : "+ arme_en_main +'}';
     }
     
    public void gestion(Arme arme){  //methode qui ajoute des armes

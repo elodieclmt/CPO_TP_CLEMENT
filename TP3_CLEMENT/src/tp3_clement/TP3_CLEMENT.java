@@ -65,6 +65,38 @@ public class TP3_CLEMENT {
         for (int j=0; j<taille2 ; j++){
             System.out.println("votre Personnage est : " + Tab2.get(j));
         }
+        
+        //test des personnges avec leur arme
+        magicien Jaq = new magicien (true , "Jaque", 65);
+        guerrier Mich = new guerrier (false , "Michel", 78);
+        
+        Epee arme1 = new Epee(5, "arme1",7);
+        Epee arme2 = new Epee(7, "arme2", 4);
+        Epee arme3 = new Epee(5, "arme3",7);
+        
+        Baton arme4 = new Baton("arme4", 4, 5);
+        Baton arme5 = new Baton("arme5", 5, 6);
+        Baton arme6 = new Baton("arme6", 4, 5);
+     //ajout des armes pour le guerrier + choix de l'amre en main
+        Mich.gestion(arme1);
+        Mich.gestion(arme2);
+        Mich.gestion(arme4);
+        
+        Mich.equiper(arme2);
+        Mich.getArme_en_main();
+        
+        //ajout des armes pour le magicien + choix de l'amre en main
+        Jaq.gestion(arme3);
+        Jaq.gestion(arme5);
+        Jaq.gestion(arme6);
+        
+        Jaq.equiper(arme3);
+        Jaq.getArme_en_main();
+        Jaq.NbArmePref();
+        
+        System.out.println(Jaq.toString());
+        System.out.println(Mich.toString());
+        
     }
     
 }
