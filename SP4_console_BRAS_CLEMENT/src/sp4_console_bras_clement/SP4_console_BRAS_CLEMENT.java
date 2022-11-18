@@ -15,6 +15,12 @@ public class SP4_console_BRAS_CLEMENT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        
+        Jeton jaune = new Jeton("jaune");
+        
+        System.out.println(jaune.toString());
+        
     }
     
 }
