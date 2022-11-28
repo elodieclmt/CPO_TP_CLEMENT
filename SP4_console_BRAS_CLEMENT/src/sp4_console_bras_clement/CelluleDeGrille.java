@@ -44,5 +44,19 @@ public class CelluleDeGrille {
       jetonCourant=null;
       return tmp;
   } 
+
+    @Override
+    public String toString() {
+        if(presenceJeton()==true){
+            return jetonCourant.toString();
+        }
+        else{
+            return ".";
+        }
+    }
+
     
+    
+   
+  
 }

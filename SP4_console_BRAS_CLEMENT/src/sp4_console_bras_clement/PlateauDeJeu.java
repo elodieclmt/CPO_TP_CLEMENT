@@ -29,7 +29,7 @@ public class PlateauDeJeu {
      *
      * @param ajout
      * @param ligne
-     * @return le numéro de la première ligne vide
+     * @return le numéro de la première ligne vide +ajoute le jeton dans la case libre
      */
     public int ajouterJetonDansColonne(Jeton ajout,int colonne){
        int i =0;
@@ -38,6 +38,7 @@ public class PlateauDeJeu {
            ligne =i;
            i+=1;
        }
+        grille[ligne][colonne].AffecterJeton(ajout);
         return ligne;  
     }
   
@@ -57,6 +58,91 @@ public class PlateauDeJeu {
         }
     }
     
+    /**
+     * affiche la grille avec ses différents élements
+     */
+    public void afficherGrilleSurConsole(){ //i=ligne  j=colonne case 00en bas à gauche
+        for (int i=6;i>0;i--){
+            for(int j=0; j<7;j++){
+                System.out.print(grille[i][j].toString());
+            }
+            System.out.println("\n");
+    }
+    }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @return verifie la presence d'un jeton dans une case choisit
+     */
+    public boolean PresenceJeton(int x, int y){
+        if(grille[x][y].presenceJeton()==true){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @return la couleur du jeton dans une case choisit de la grille
+     */
+    public String lireCouleurDuJeton(int x, int y){
+        return grille[x][y].lireCouleurDuJeton();
+    }
+    
+    public boolean ligneGagnantePourCouleur(String couleur){
+        for (int i=6;i>0;i--){
+            for(int j=0; j<4;j++){
+               if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i,j+1)==couleur && lireCouleurDuJeton(i,j+2)==couleur && lireCouleurDuJeton(i,j+3)==couleur){
+                   return true;
+               } 
+            }
+        }return false;
+        
+    }
+    
+    public boolean colonneGagnantePourCouleur(String couleur){
+        for (int j=0;j<7;j++){
+            for(int i=0; i<3;i++){
+               if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i+1,j)==couleur && lireCouleurDuJeton(i+2,j)==couleur && lireCouleurDuJeton(i+3,j)==couleur){
+                   return true;
+               } 
+            }
+        }return false;
+        
+    }
+    
+    public boolean digonaleMontanteGagnantePourCouleur(String couleur){
+        for (int j=0;j<4;j++){
+            for(int i=0; i<3;i++){
+               if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i+1,j+1)==couleur && lireCouleurDuJeton(i+2,j+2)==couleur && lireCouleurDuJeton(i+3,j+3)==couleur){
+                   return true;
+               } 
+            }
+        }return false;
+        
+    }
+    
+    public boolean diagonaleDesendanteGagnantePourCouleur(String couleur){
+        for (int j=0;j<4;j++){
+            for(int i=6; i>2;i--){
+               if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i-1,j+1)==couleur && lireCouleurDuJeton(i-2,j+2)==couleur && lireCouleurDuJeton(i-3,j+3)==couleur){
+                   return true;
+               } 
+            }
+        }return false;
+        
+    }
+    
+    public boolean etreGagnantePourCouleur(String couleur){
+        if(ligneGagnantePourCouleur(couleur)==true || colonneGagnantePourCouleur(couleur)==true || digonaleMontanteGagnantePourCouleur(couleur)==true || diagonaleDesendanteGagnantePourCouleur(couleur)==true){
+            return true;
+        }
+        return false;
+    }
 }
