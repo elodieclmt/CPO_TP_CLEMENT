@@ -42,6 +42,10 @@ public class PlateauDeJeu {
         return ligne;  
     }
   
+    /**
+     *verifie si la grille est pleine
+     * @return
+     */
     public boolean grilleRemplie(){
         int tmp =0;
         for (int i=0;i<6;i++){
@@ -139,10 +143,31 @@ public class PlateauDeJeu {
         
     }
     
+    /**
+     *utilise les methode qui vérifie s'il y a une ligne,colonne,digonale gagnante
+     * @param couleur
+     * @return
+     */
     public boolean etreGagnantePourCouleur(String couleur){
         if(ligneGagnantePourCouleur(couleur)==true || colonneGagnantePourCouleur(couleur)==true || digonaleMontanteGagnantePourCouleur(couleur)==true || diagonaleDesendanteGagnantePourCouleur(couleur)==true){
             return true;
         }
         return false;
+    }
+    
+    /**
+     * verifie si la colonne est pleine 
+     * @param c
+     * @return
+     */
+    public boolean colonneRemplie(int c){
+        int i =0;
+        while(grille[i][c]!=null){
+           i+=1;
+       }
+        if(i==6){
+           return true; 
+        }
+        return false;  
     }
 }
