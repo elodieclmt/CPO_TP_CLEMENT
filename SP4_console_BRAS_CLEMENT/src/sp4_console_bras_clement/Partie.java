@@ -12,14 +12,14 @@ import java.util.Random;
  */
 public class Partie {
     
-    private joueur [] listeJoueurs = new joueur [2];
+    private joueur [] listeJoueurs = new joueur [0];
     private joueur joueurCourant;
     private PlateauDeJeu plateau;
 
     public Partie(joueur joueurCourant1, joueur joueurCourant2) {
         
-        listeJoueurs[1]= joueurCourant1;
-        listeJoueurs[2]=joueurCourant2;
+        listeJoueurs[0]= joueurCourant1;
+        listeJoueurs[1]=joueurCourant2;
         plateau = new PlateauDeJeu();
     }
     
@@ -27,12 +27,12 @@ public class Partie {
         Random couleur = new Random();
         int choix = couleur.nextInt(1);
         if (choix==1){
-            listeJoueurs[1].affecterCouleur("Jaune");
-            listeJoueurs[2].affecterCouleur("Rouge");
+            listeJoueurs[0].affecterCouleur("Jaune");
+            listeJoueurs[1].affecterCouleur("Rouge");
         }
         else{
-            listeJoueurs[2].affecterCouleur("Jaune");
-            listeJoueurs[1].affecterCouleur("Rouge");
+            listeJoueurs[1].affecterCouleur("Jaune");
+            listeJoueurs[0].affecterCouleur("Rouge");
         }
     
     }
@@ -53,5 +53,51 @@ public class Partie {
         creerEtAffecterJeton(listeJoueurs[2]);
     }
     
+    public void placerTrousNoirsEtDesintegrateur(){
+        Random ran = new Random();
+        int ligne = ran.nextInt(6);
+        int colonne = ran.nextInt(7);
+        int i=0;
+        int j=0;
+        int k=0;
+        
+        while(i<3){
+        while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
+            ligne = ran.nextInt(6);
+            colonne = ran.nextInt(7);    
+        }
+        plateau.placerTrouNoir(ligne, colonne);
+        plateau.placerDesintegrateur(ligne, colonne);
+        i+=1;
+    }
+    
+     while(j<2){
+        while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
+            ligne = ran.nextInt(6);
+            colonne = ran.nextInt(7);    
+        }
+        plateau.placerTrouNoir(ligne, colonne);
+        
+        j+=1;
+    }
+     
+     while(k<2){
+        while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
+            ligne = ran.nextInt(6);
+            colonne = ran.nextInt(7);    
+        }
+        plateau.placerDesintegrateur(ligne, colonne);
+        
+        k+=1;
+    }
+    }
+    
+    public void lancerPartie(){
+        while(plateau.grilleRemplie()==false || plateau.etreGagnantePourCouleur("Jaune")==false || plateau.etreGagnantePourCouleur("Rouge")==false ){
+            joueurCourant=listeJoueurs[0];
+            
+            
+        }
+    }
     
 }

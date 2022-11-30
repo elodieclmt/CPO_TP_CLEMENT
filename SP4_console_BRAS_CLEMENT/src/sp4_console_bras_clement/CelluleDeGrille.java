@@ -12,6 +12,8 @@ package sp4_console_bras_clement;
 public class CelluleDeGrille {
   
     private Jeton jetonCourant;
+    private boolean avoirTrouNoir;
+    private boolean avoirDesintegrateur;
 
     public CelluleDeGrille() {
         jetonCourant=null;
@@ -55,8 +57,65 @@ public class CelluleDeGrille {
         }
     }
 
+    /**
+     * ajoute un trou noir en passant sa valeur à vrai
+     */
+    public void placerTrouNoir(){
+        avoirTrouNoir = true;
+    }
     
+    /**
+     *supprime un trou noir en passant sa valeur à faux
+     */
+    public void supprimerTrouNoir(){
+        avoirTrouNoir = false;
+    }
+
+    /**
+     *
+     * @return la valeur du trou noir pour savoir s'il est presnt ou pas sur la case
+     */
+    public boolean presenceTrouNoir() {
+        return avoirTrouNoir;
+    }
     
+    /**
+     *supprime le jeton qui ce trouve sur la case du trou noir ou par désintégration
+     */
+    public void supprimerJeton(){
+        jetonCourant=null;
+    }
+    
+    /**
+     *
+     * @return la valeur(V/F) du désintegrateur pour savoir ci celui-ci est present
+     */
+    public boolean presenceDesintegrateur(){
+        return avoirDesintegrateur == true;
+    }
+    
+    /**
+     *ajoute un désintegrateur sur la cellule en mettant se valeur à vrai
+     */
+    public void placerDesintegrateur(){
+        avoirDesintegrateur = true;
+    }
+    
+    /**
+     * premet de supprimer le desintegrateur en passant sa valeur à faux
+     */
+    public void supprimerDesintegrateur(){
+        avoirDesintegrateur = false;
+    }
+    
+    /**
+     *supprime le trou noir et le jeton qui se trouve sur la case du trou noir
+     */
+    public void activerTrouNoir(){
+        supprimerJeton();
+        supprimerTrouNoir();
+    }
+            
    
   
 }

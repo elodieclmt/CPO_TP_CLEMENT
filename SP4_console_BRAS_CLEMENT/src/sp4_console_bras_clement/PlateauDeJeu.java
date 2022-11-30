@@ -171,5 +171,71 @@ public class PlateauDeJeu {
         return false;  
     }
     
+    /**
+     *lorsqu'un jeton est supprimé, fait passer le jeton du dessus dans la case vide en dessous
+     * @param colonne
+     */
+    public void tasserColonne(int colonne){
+        for (int i=0; i<6; i++){
+            if (PresenceJeton(i,colonne) == false){
+                Jeton j = grille[i+1][colonne].recupererJeton();
+                grille[i][colonne].AffecterJeton(j);
+                
+            }
+        }
+    }
     
+    /**
+     *place un trou noir dans une case choisie
+     * @param x
+     * @param y
+     */
+    public void placerTrouNoir(int x, int y){
+        grille[x][y].placerTrouNoir();
+    }
+    
+    /**
+     *supprime le trou noir dans une case choisie 
+     * @param x
+     * @param y
+     */
+    public void supprimerTrouNoir(int x, int y){
+        grille[x][y].supprimerTrouNoir();
+    }
+    
+    /**
+     *ajoute un désintégrateur à l'endroit choisie
+     * @param x
+     * @param y
+     */
+    public void placerDesintegrateur(int x, int y){
+        grille[x][y].placerDesintegrateur();
+    }
+    
+    /**
+     * supprime le eton de la cellule visée
+     * @param x
+     * @param y
+     */
+    public void supprimerJeton(int x, int y){
+        grille[x][y].supprimerJeton();
+    }
+    
+    /**
+     *
+     * @param x
+     * @param y
+     * @return la référence du jeton enlevé
+     */
+    public Jeton recupererJeton(int x, int y){
+        return grille[x][y].recupererJeton();
+    }
+    
+    public boolean presenceDesintegrateur(int x, int y){
+        return grille[x][y].presenceDesintegrateur();
+    }
+    
+    public boolean presenceTrouNoir(int x, int y){
+        return grille[x][y].presenceTrouNoir();
+    }
 }
