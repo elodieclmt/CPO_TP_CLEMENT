@@ -36,4 +36,8 @@ public class joueur {
         Jeton j=reserveJeton.remove(0);
         return j;
     }
+
+    public String LireCouleur() {
+        return couleur;
+    }
 }
