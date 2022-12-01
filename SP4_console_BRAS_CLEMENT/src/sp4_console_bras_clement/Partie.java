@@ -5,6 +5,7 @@
 package sp4_console_bras_clement;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -114,10 +115,80 @@ public class Partie {
     }
     
     public void lancerPartie(){
+        
+        plateau.afficherGrilleSurConsole();
+        
         while(plateau.grilleRemplie()==false || plateau.etreGagnantePourCouleur("Jaune")==false || plateau.etreGagnantePourCouleur("Rouge")==false ){
             joueurCourant=listeJoueurs[0];
             
+            //on demande au joueur ce qu'il veut faire et on récupère sa valeur dans une variable
+            System.out.println("Taper 1 si vous voulez jouer un jeton");
+            System.out.println("Taper 2 si vous voulez jouer un désintégrateur");
+            System.out.println("Taper 3 si vous voulez récuperer un jeton");
             
+            Scanner reponse = new Scanner (System.in); 
+            int choix = reponse.nextInt();
+            
+            if(choix==1){  //si le joueur veut jouer un jeton
+               System.out.println("Rentrer un numéro de colonne entre 0 et 6 (sachant que la colonne 0 est la plus à gauche)");
+               
+               Scanner colonne = new Scanner (System.in);
+               int cln = colonne.nextInt();    //cln est le juméro de la colonne dans laquel le joueur souhaite jouer
+               
+               //ajout d'un jeton de la couleur du joueur dans la ligne la plus basse
+               //de la colonne choisis par le joueur 
+               int ligne=plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), cln);
+               
+               //vérification de laprésence ou non de trou noir ou désintégrateur
+               //sur la case où est tombé le jeton
+               if(plateau.presenceTrouNoir(ligne , cln)==true){
+                   plateau.supprimerJeton(ligne , cln);
+                   plateau.tasserColonne(cln);
+                   plateau.supprimerTrouNoir(ligne, cln);
+               }
+               if(plateau.presenceDesintegrateur(ligne , cln)==true){
+                   joueurCourant.obtenirDesintegrateur();
+                   plateau.supprimerDesintegrateur(ligne, cln);
+               }   
+            }
+            
+            //si l'utilisateur décide de jouer un désintégrateur
+            if(choix==2){
+                if(joueurCourant.getNombreDesintegrateurs()>0){
+                    joueurCourant.utiliserDesintegrateur();
+                    
+                    System.out.println("Renseigner la ligne du jeton que vous souhaiter désintégrer");
+                    Scanner ligne = new Scanner (System.in);
+                    int lgn = ligne.nextInt();
+                    
+                    System.out.println("Renseigner la colonne du jeton que vous souhaiter désintégrer");
+                    Scanner colonne = new Scanner (System.in);
+                    int cln = colonne.nextInt();
+                    
+                    plateau.supprimerJeton(lgn, cln);
+                    plateau.tasserColonne(cln);
+                }
+            }
+            
+            //si le joueur souhaite récuperer un jeton
+            if(choix==3){
+                System.out.println("Renseigner la ligne du jeton que vous souhaiter récuperer");
+                    Scanner ligne = new Scanner (System.in);
+                    int lgn = ligne.nextInt();
+                    
+                    System.out.println("Renseigner la colonne du jeton que vous souhaiter récuperer");
+                    Scanner colonne = new Scanner (System.in);
+                    int cln = colonne.nextInt();
+                    
+                    plateau.recupererJeton(lgn, cln);
+                    joueurCourant.ajouterJeton(plateau.recupererJeton(lgn, cln));
+                    plateau.tasserColonne(cln);
+            }
+            plateau.afficherGrilleSurConsole();
+            
+            
+            
+
         }
     }
     

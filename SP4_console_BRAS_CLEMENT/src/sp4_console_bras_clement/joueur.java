@@ -80,4 +80,14 @@ public class joueur {
     public void utiliserDesintegrateur(){
         nombreDesintegrateurs -= 1;
     }
+
+    /**
+     *permet de recuperer le nombre de désintegrateur d'un joueur
+     * @return
+     */
+    public int getNombreDesintegrateurs() {
+        return nombreDesintegrateurs;
+    }
+    
+    
 }
