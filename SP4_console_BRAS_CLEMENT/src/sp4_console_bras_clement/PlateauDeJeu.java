@@ -11,6 +11,7 @@ package sp4_console_bras_clement;
 public class PlateauDeJeu {
     
     private CelluleDeGrille[][] grille = new CelluleDeGrille[6][7];
+    //grille de 6 ligne et 7 colonne avec l'élément (0,0) en bas à gauche
 
     /**
      *constructeur pour créer 42 cellules de type CelluleDeGrille
@@ -28,7 +29,7 @@ public class PlateauDeJeu {
     /**
      *
      * @param ajout
-     * @param ligne
+     * @param colonne
      * @return le numéro de la première ligne vide +ajoute le jeton dans la case libre
      */
     public int ajouterJetonDansColonne(Jeton ajout,int colonne){
@@ -43,7 +44,7 @@ public class PlateauDeJeu {
     }
   
     /**
-     *verifie si la grille est pleine
+     *verifie si la grille est pleine en fonction revoie vrai ou faux
      * @return
      */
     public boolean grilleRemplie(){
@@ -61,6 +62,8 @@ public class PlateauDeJeu {
             return false;
         }
     }
+    
+    
     
     /**
      * affiche la grille avec ses différents élements
@@ -98,6 +101,10 @@ public class PlateauDeJeu {
     public String lireCouleurDuJeton(int x, int y){
         return grille[x][y].lireCouleurDuJeton();
     }
+    
+    //les 4 méthodes qui suivent sont utilisée dans etreGagnantePourCouleur()
+    // afin de vérifier si la grille est gagnante ou pas dans toutes les
+    //circonstante possible
     
     public boolean ligneGagnantePourCouleur(String couleur){
         for (int i=6;i>0;i--){
@@ -213,6 +220,15 @@ public class PlateauDeJeu {
     }
     
     /**
+     *supprime le desintegrateur dans une case choisie 
+     * @param x
+     * @param y
+     */
+    public void supprimerDesintegrateur(int x, int y){
+        grille[x][y].supprimerDesintegrateur();
+    }
+    
+    /**
      * supprime le eton de la cellule visée
      * @param x
      * @param y
@@ -231,10 +247,22 @@ public class PlateauDeJeu {
         return grille[x][y].recupererJeton();
     }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @return la présence ou non d'un desintegrateur dans une cellule precise
+     */
     public boolean presenceDesintegrateur(int x, int y){
         return grille[x][y].presenceDesintegrateur();
     }
     
+    /**
+     *
+     * @param x
+     * @param y
+     * @return la présence ou non d'un troue noir dans une cellule precise
+     */
     public boolean presenceTrouNoir(int x, int y){
         return grille[x][y].presenceTrouNoir();
     }

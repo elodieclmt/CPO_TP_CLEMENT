@@ -16,6 +16,12 @@ public class Partie {
     private joueur joueurCourant;
     private PlateauDeJeu plateau;
 
+    /**
+     * constructeur qui ajoute les deux joueurs au tableau listeJoueur
+     * et initialise un plateau
+     * @param joueurCourant1
+     * @param joueurCourant2
+     */
     public Partie(joueur joueurCourant1, joueur joueurCourant2) {
         
         listeJoueurs[0]= joueurCourant1;
@@ -23,6 +29,9 @@ public class Partie {
         plateau = new PlateauDeJeu();
     }
     
+    /**
+     *distribution aléatoire des couelrus aux joueurs
+     */
     public void attribuerCouleurAuxJoueurs(){
         Random couleur = new Random();
         int choix = couleur.nextInt(1);
@@ -37,6 +46,10 @@ public class Partie {
     
     }
     
+    /**
+     * création des 30 jetons et affectation au joueur en paramètre
+     * @param J1
+     */
     public void creerEtAffecterJeton(joueur J1){
        String couleur = J1.LireCouleur();
        for(int i=0; i<30 ; i++){
@@ -47,19 +60,27 @@ public class Partie {
         
     }
     
+    /**
+     * initialise la partie en attribuant les couleurs aux joueurs
+     * et place les tours noir et désintégrateur
+     */
     public void initialiserPartie(){
         attribuerCouleurAuxJoueurs();
         creerEtAffecterJeton(listeJoueurs[1]);
         creerEtAffecterJeton(listeJoueurs[2]);
+        placerTrousNoirsEtDesintegrateur();
     }
     
+    /**
+     * place les 5 trous noirs et les 5 désintégrateur dans le plateau
+     * Sachant que 3 des désintegrateurs doivent se situer sur la meme case
+     * qu'un trou noir
+     */
     public void placerTrousNoirsEtDesintegrateur(){
         Random ran = new Random();
         int ligne = ran.nextInt(6);
         int colonne = ran.nextInt(7);
         int i=0;
-        int j=0;
-        int k=0;
         
         while(i<3){
         while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
@@ -71,24 +92,24 @@ public class Partie {
         i+=1;
     }
     
-     while(j<2){
+     while(i<2){
         while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
             ligne = ran.nextInt(6);
             colonne = ran.nextInt(7);    
         }
         plateau.placerTrouNoir(ligne, colonne);
         
-        j+=1;
+        i+=1;
     }
      
-     while(k<2){
+     while(i<2){
         while(plateau.presenceTrouNoir(ligne,colonne) == true || plateau.presenceDesintegrateur(ligne,colonne)== true){
             ligne = ran.nextInt(6);
             colonne = ran.nextInt(7);    
         }
         plateau.placerDesintegrateur(ligne, colonne);
         
-        k+=1;
+        i+=1;
     }
     }
     

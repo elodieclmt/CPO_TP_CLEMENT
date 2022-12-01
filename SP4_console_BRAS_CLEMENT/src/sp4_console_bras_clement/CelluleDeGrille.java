@@ -15,11 +15,19 @@ public class CelluleDeGrille {
     private boolean avoirTrouNoir;
     private boolean avoirDesintegrateur;
 
+    /**
+     *constructeur qui initialise par défaux les valeur des attributs à nulle ou faux 
+     */
     public CelluleDeGrille() {
         jetonCourant=null;
+        avoirTrouNoir=false;
+        avoirDesintegrateur=false;
     }
 
-     
+    /**
+     * vérifie la presence d'une jeton dans une cellule 
+     * @return vrai s'il y en a un et faux sinon
+     */
     public boolean presenceJeton(){
         if(jetonCourant==null){
             return false;
@@ -29,11 +37,19 @@ public class CelluleDeGrille {
         }
     }
 
+    /**
+     * accesseur de lecture qui ajoute une jeton dans la cellule
+     * @param jetonCourant
+     */
     public void AffecterJeton(Jeton jetonCourant) {
         this.jetonCourant = jetonCourant;
     }
     
-   public String lireCouleurDuJeton(){
+    /**
+     *Permet de connaitre la couleur du jeton s'il est present dans la cellule
+     * @return soit la couleur du jeton soit vide s'il n'y en a pas
+     */
+    public String lireCouleurDuJeton(){
        if(jetonCourant != null){
            return jetonCourant.lireCouleur();
        }else{
@@ -41,16 +57,32 @@ public class CelluleDeGrille {
        }
    }
    
-  public Jeton recupererJeton(){
+    /**
+     * methode utiliser pour récuperer un jeton ou lorsqu'une partie est fini
+     * afin de retirer tous les jetons puis de les redistribuer pour en recommencer une
+     * @return la référence vers un jeton et supprime le jeton de la cellule
+     */
+    public Jeton recupererJeton(){
       Jeton tmp = jetonCourant;
       jetonCourant=null;
       return tmp;
   } 
 
+    /**
+     *
+     * @return 
+     * le caractère qui permet d'identifier ce qu'il y a dans la cellule
+     */
     @Override
     public String toString() {
         if(presenceJeton()==true){
             return jetonCourant.toString();
+        }
+        if(presenceTrouNoir()==true || (presenceTrouNoir()==true && presenceDesintegrateur()==true)){
+            return "@";
+        }
+        if(presenceDesintegrateur()==true){
+            return "D";
         }
         else{
             return ".";
@@ -58,14 +90,14 @@ public class CelluleDeGrille {
     }
 
     /**
-     * ajoute un trou noir en passant sa valeur à vrai
+     * ajoute un trou noir dans la cellule
      */
     public void placerTrouNoir(){
         avoirTrouNoir = true;
     }
     
     /**
-     *supprime un trou noir en passant sa valeur à faux
+     *supprime un trou noir dans sa cellule en passant sa valeur à faux
      */
     public void supprimerTrouNoir(){
         avoirTrouNoir = false;
@@ -73,7 +105,7 @@ public class CelluleDeGrille {
 
     /**
      *
-     * @return la valeur du trou noir pour savoir s'il est presnt ou pas sur la case
+     * @return la valeur du trou noir pour savoir s'il est present ou non dans la cellule
      */
     public boolean presenceTrouNoir() {
         return avoirTrouNoir;
@@ -88,7 +120,7 @@ public class CelluleDeGrille {
     
     /**
      *
-     * @return la valeur(V/F) du désintegrateur pour savoir ci celui-ci est present
+     * @return la valeur(V/F) du désintegrateur pour savoir ci celui-ci est present dans la cellule
      */
     public boolean presenceDesintegrateur(){
         return avoirDesintegrateur == true;
@@ -102,7 +134,7 @@ public class CelluleDeGrille {
     }
     
     /**
-     * premet de supprimer le desintegrateur en passant sa valeur à faux
+     * premet de supprimer le desintegrateur de la cellule en passant sa valeur à faux
      */
     public void supprimerDesintegrateur(){
         avoirDesintegrateur = false;
