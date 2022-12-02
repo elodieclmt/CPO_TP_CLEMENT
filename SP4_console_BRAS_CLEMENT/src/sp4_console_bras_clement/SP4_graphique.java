@@ -11,11 +11,25 @@ package sp4_console_bras_clement;
  */
 public class SP4_graphique extends javax.swing.JFrame {
 
+    private joueur[] listeJoueurs = new joueur[2];
+    private joueur joueurCourant;
+    
+    PlateauDeJeu plateau = new PlateauDeJeu();
+    
     /**
      * Creates new form SP4_graphique
      */
     public SP4_graphique() {
         initComponents();
+        panneau_info_joueurs.setVisible(false);
+        panneau_info_partie.setVisible(false);
+        
+        for(int i=5; i>=0; i--){
+            for(int j=0; j<7; j++){
+                cellule_graphique cellGraph = new cellule_graphique(plateau.grille[i][j]);
+                panneau_grille.add(cellGraph);
+            }
+        }
     }
 
     /**
@@ -86,6 +100,11 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_creation_partie.add(nom_joueur2, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 50, 120, -1));
 
         btn_start.setLabel("Démarrer partie");
+        btn_start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_startActionPerformed(evt);
+            }
+        });
         panneau_creation_partie.add(btn_start, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, -1, -1));
 
         panneau_info_joueurs.setBackground(new java.awt.Color(204, 255, 204));
@@ -149,7 +168,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         message.setViewportView(jTextArea1);
 
-        panneau_info_partie.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 96, 250, 100));
+        panneau_info_partie.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 100));
 
         btn_col_0.setLabel("1");
         btn_col_0.addActionListener(new java.awt.event.ActionListener() {
@@ -221,10 +240,10 @@ public class SP4_graphique extends javax.swing.JFrame {
                         .addComponent(panneau_grille, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panneau_info_joueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addComponent(panneau_info_joueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                     .addComponent(panneau_creation_partie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panneau_info_partie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,13 +259,14 @@ public class SP4_graphique extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(panneau_grille, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(panneau_creation_partie, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(panneau_info_joueurs, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panneau_info_partie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(panneau_grille, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(panneau_info_partie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -279,6 +299,14 @@ public class SP4_graphique extends javax.swing.JFrame {
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_col_6ActionPerformed
+
+    private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
+        //affiche les deux autres labels(info joueur et info partie lorsque
+        //l'on appuis sur le bouton démarrer
+        panneau_info_joueurs.setVisible(true);
+        panneau_info_partie.setVisible(true);
+        
+    }//GEN-LAST:event_btn_startActionPerformed
 
     /**
      * @param args the command line arguments

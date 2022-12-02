@@ -9,8 +9,8 @@ package sp4_console_bras_clement;
  * @author Elodie
  */
 public class PlateauDeJeu {
-    
-    private CelluleDeGrille[][] grille = new CelluleDeGrille[6][7];
+    //on enleve le private pour permettre à l'interface graphique d'utiliser la grille
+    CelluleDeGrille[][] grille = new CelluleDeGrille[6][7];
     //grille de 6 ligne et 7 colonne avec l'élément (0,0) en bas à gauche
 
     /**
