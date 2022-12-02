@@ -21,6 +21,12 @@ public class SP4_console_BRAS_CLEMENT {
         
         System.out.println(jaune.toString());
         
+        joueur j1 = new joueur("Kevin");
+        joueur j2 = new joueur("Marc");
+        
+        Partie p1 = new Partie(j1,j2);
+        p1.initialiserPartie();
+        p1.lancerPartie();
     }
     
 }

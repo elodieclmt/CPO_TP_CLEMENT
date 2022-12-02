@@ -33,11 +33,11 @@ public class PlateauDeJeu {
      * @return le numéro de la première ligne vide +ajoute le jeton dans la case libre
      */
     public int ajouterJetonDansColonne(Jeton ajout,int colonne){
-       int i =0;
+      
        int ligne=0;
-        while(grille[i][colonne]!=null){
-           ligne =i;
-           i+=1;
+        while(grille[ligne][colonne].presenceJeton()){
+           
+          ligne+=1;
        }
         grille[ligne][colonne].AffecterJeton(ajout);
         return ligne;  
@@ -51,7 +51,7 @@ public class PlateauDeJeu {
         int tmp =0;
         for (int i=0;i<6;i++){
             for(int j=0; j<7;j++){
-                if(grille[i][j]==null){
+                if(grille[i][j].presenceJeton()==false){
                      tmp +=1;
                 }
             }
@@ -69,7 +69,7 @@ public class PlateauDeJeu {
      * affiche la grille avec ses différents élements
      */
     public void afficherGrilleSurConsole(){ //i=ligne  j=colonne case 00en bas à gauche
-        for (int i=6;i>0;i--){
+        for (int i=5;i>=0;i--){
             for(int j=0; j<7;j++){
                 System.out.print(grille[i][j].toString());
             }
@@ -107,7 +107,7 @@ public class PlateauDeJeu {
     //circonstante possible
     
     public boolean ligneGagnantePourCouleur(String couleur){
-        for (int i=6;i>0;i--){
+        for (int i=5;i>=0;i--){
             for(int j=0; j<4;j++){
                if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i,j+1)==couleur && lireCouleurDuJeton(i,j+2)==couleur && lireCouleurDuJeton(i,j+3)==couleur){
                    return true;
@@ -141,7 +141,7 @@ public class PlateauDeJeu {
     
     public boolean diagonaleDesendanteGagnantePourCouleur(String couleur){
         for (int j=0;j<4;j++){
-            for(int i=6; i>2;i--){
+            for(int i=5; i>2;i--){
                if(lireCouleurDuJeton(i,j)==couleur && lireCouleurDuJeton(i-1,j+1)==couleur && lireCouleurDuJeton(i-2,j+2)==couleur && lireCouleurDuJeton(i-3,j+3)==couleur){
                    return true;
                } 
@@ -183,7 +183,7 @@ public class PlateauDeJeu {
      * @param colonne
      */
     public void tasserColonne(int colonne){
-        for (int i=0; i<6; i++){
+        for (int i=0; i<5; i++){
             if (PresenceJeton(i,colonne) == false){
                 Jeton j = grille[i+1][colonne].recupererJeton();
                 grille[i][colonne].AffecterJeton(j);
