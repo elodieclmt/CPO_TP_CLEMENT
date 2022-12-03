@@ -11,7 +11,7 @@ package sp4_console_bras_clement;
  */
 public class Jeton {
     
-    private String couleur;   //couleur affecter au jeton, rouge ou jaune
+    String couleur;   //couleur affecter au jeton, rouge ou jaune
 
     /**
      *initialise la couleur du jeton

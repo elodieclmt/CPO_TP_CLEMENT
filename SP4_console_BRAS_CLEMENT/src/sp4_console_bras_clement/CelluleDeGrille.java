@@ -11,7 +11,7 @@ package sp4_console_bras_clement;
  */
 public class CelluleDeGrille {
   
-    private Jeton jetonCourant;
+    Jeton jetonCourant;
     private boolean avoirTrouNoir;
     private boolean avoirDesintegrateur;
 

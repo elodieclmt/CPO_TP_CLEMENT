@@ -192,6 +192,29 @@ public class PlateauDeJeu {
         }
     }
     
+    public void tasserColonne2(int colonne){
+        for(int i=0; i<6 ;i++){
+            if (i==5){
+                grille[i][colonne].jetonCourant = null;
+            }else{
+                if(grille[i][colonne].jetonCourant == null){
+                    grille[i][colonne].jetonCourant = grille[i+1][colonne].jetonCourant;
+                    grille[i+1][colonne].jetonCourant = null;
+                }
+            }
+        }
+    }
+    
+    /**
+     *methode qui permet de tesser toutes les colonne de la grille d'un seul coup
+     * (utile pour l'interface graphique)
+     */
+    public void tasserGrille(){
+        for(int i=0; i<7; i++){
+            tasserColonne2(i);
+        }
+    }
+    
     /**
      *place un trou noir dans une case choisie
      * @param x
