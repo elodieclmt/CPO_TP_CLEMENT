@@ -192,26 +192,14 @@ public class PlateauDeJeu {
         }
     }
     
-    public void tasserColonne2(int colonne){
-        for(int i=0; i<6 ;i++){
-            if (i==5){
-                grille[i][colonne].jetonCourant = null;
-            }else{
-                if(grille[i][colonne].jetonCourant == null){
-                    grille[i][colonne].jetonCourant = grille[i+1][colonne].jetonCourant;
-                    grille[i+1][colonne].jetonCourant = null;
-                }
-            }
-        }
-    }
-    
+   
     /**
      *methode qui permet de tesser toutes les colonne de la grille d'un seul coup
      * (utile pour l'interface graphique)
      */
     public void tasserGrille(){
         for(int i=0; i<7; i++){
-            tasserColonne2(i);
+            tasserColonne(i);
         }
     }
     
@@ -288,5 +276,20 @@ public class PlateauDeJeu {
      */
     public boolean presenceTrouNoir(int x, int y){
         return grille[x][y].presenceTrouNoir();
+    }
+    
+    /**
+     *Vide entièrement la grille
+     */
+    public void viderGrille(){
+        for(int i=0; i<6; i++){
+            for(int j=0; j<7; j++){
+                grille[i][j].jetonCourant = null;
+                grille[i][j].avoirTrouNoir = false;
+                grille[i][j].avoirDesintegrateur = false;
+                
+            }
+        }
+        
     }
 }

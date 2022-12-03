@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Elodie
  */
 public class SP4_graphique extends javax.swing.JFrame {
-
+    //importation des attributs de partie pour les utiliser dans le code de l'interface
     joueur[] listeJoueurs = new joueur[2];
     joueur joueurCourant;
     PlateauDeJeu plateau = new PlateauDeJeu();
@@ -22,9 +22,13 @@ public class SP4_graphique extends javax.swing.JFrame {
      */
     public SP4_graphique() {
         initComponents();
+        //on cache les deux panneaux d'information tant que la prtie n'est pas lancé
         panneau_info_joueurs.setVisible(false);
         panneau_info_partie.setVisible(false);
 
+        //on a créé chaque bouton pour chaque case
+        //ceci sert ensuite pour faciliter le code lors de la recuperation ou 
+        //desintegration d'un jeton
         for (int i = 5; i >= 0; i--) {
             for (int j = 0; j < 7; j++) {
                 cellule_graphique cellGraph = new cellule_graphique(plateau.grille[i][j]);
@@ -35,13 +39,14 @@ public class SP4_graphique extends javax.swing.JFrame {
                         if (c.jetonCourant == null) {
                             return;
                         }
-
+                         //condition pour recuperer uniquement un jeton de la meme
+                         //couleur que je joueur courant
                         if (c.jetonCourant.couleur.equals(joueurCourant.couleur)) {
                             textMessage.setText("le joueur " + joueurCourant.nom + " récupère un de ses jetons");
                             Jeton jrecup = c.recupererJeton();
                             joueurCourant.ajouterJeton(jrecup);
                             joueurSuivant();
-                        } else {
+                        } else { //on verifie que le joueur a des désintegrateur pour en jouer
                             if (joueurCourant.getNombreDesintegrateurs() > 0) {
                                 textMessage.setText("le joueur " + joueurCourant.nom + " désintegre un jeton");
                                 c.supprimerJeton();
@@ -52,12 +57,13 @@ public class SP4_graphique extends javax.swing.JFrame {
                             }
                         }
                         plateau.tasserGrille();
-                        panneau_grille.add(cellGraph);
+                        
                         panneau_grille.repaint();  //premet de rafrechir le grille
                         //on verifie les condition de victoire et en fonction on affiche le bon message
                         lbl_j1_desint.setText(listeJoueurs[0].getNombreDesintegrateurs() + "");
                         lbl_j2_desint.setText(listeJoueurs[1].getNombreDesintegrateurs() + "");
 
+                        //on test les condition pour connaitre le gagnat lorsq'il y en a un
                         boolean vict_j1 = plateau.etreGagnantePourCouleur(listeJoueurs[0].couleur);
                         boolean vict_j2 = plateau.etreGagnantePourCouleur(listeJoueurs[1].couleur);
 
@@ -162,7 +168,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_joueurs.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_j1_desint.setText("nbdesintjoueur1");
-        panneau_info_joueurs.add(lbl_j1_desint, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        panneau_info_joueurs.add(lbl_j1_desint, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 100, -1));
 
         jLabel5.setText("Joueur 1 :");
         panneau_info_joueurs.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
@@ -174,14 +180,14 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_joueurs.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         lbl_j1_nom.setText("nomjoueur1");
-        panneau_info_joueurs.add(lbl_j1_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+        panneau_info_joueurs.add(lbl_j1_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 80, -1));
 
         lbl_j1_couleur.setText("couleurjoueur1");
-        panneau_info_joueurs.add(lbl_j1_couleur, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
+        panneau_info_joueurs.add(lbl_j1_couleur, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 90, -1));
         panneau_info_joueurs.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 123, 250, 10));
 
         lbl_j2_desint.setText("nbdesintjoueur2");
-        panneau_info_joueurs.add(lbl_j2_desint, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        panneau_info_joueurs.add(lbl_j2_desint, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 100, -1));
 
         jLabel9.setText("couleur :");
         panneau_info_joueurs.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
@@ -190,7 +196,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_joueurs.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         lbl_j2_couleur.setText("couleurjoueur2");
-        panneau_info_joueurs.add(lbl_j2_couleur, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        panneau_info_joueurs.add(lbl_j2_couleur, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel4.setText("Infos Joueurs :");
@@ -200,7 +206,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_joueurs.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         lbl_j2_nom.setText("nomjoueur2");
-        panneau_info_joueurs.add(lbl_j2_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        panneau_info_joueurs.add(lbl_j2_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 80, -1));
 
         panneau_info_partie.setBackground(new java.awt.Color(204, 255, 204));
         panneau_info_partie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -213,7 +219,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_partie.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         lbl_jcourant.setText("nomjoueur");
-        panneau_info_partie.add(lbl_jcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+        panneau_info_partie.add(lbl_jcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 70, -1));
 
         textMessage.setColumns(20);
         textMessage.setRows(5);
@@ -277,33 +283,34 @@ public class SP4_graphique extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(84, 84, 84)
                         .addComponent(btn_col_0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(btn_col_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(btn_col_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(btn_col_3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56)
-                        .addComponent(btn_col_4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
+                        .addComponent(btn_col_1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(btn_col_2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_col_3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_col_4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
                         .addComponent(btn_col_5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGap(43, 43, 43)
                         .addComponent(btn_col_6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
+                        .addGap(62, 62, 62)
                         .addComponent(panneau_grille, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
+                .addGap(92, 92, 92)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(panneau_info_joueurs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                     .addComponent(panneau_creation_partie, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panneau_info_partie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_col_0)
                     .addComponent(btn_col_1)
@@ -332,6 +339,8 @@ public class SP4_graphique extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nom_joueur2ActionPerformed
 
+    //code de creation des boutons contenant l'information qui permet au joeur de placer
+    //un jeton dans la colonne en question + de passer au joueur suivant 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         // TODO add your handling code here:
         jouerDansColonne(0);
@@ -375,10 +384,11 @@ public class SP4_graphique extends javax.swing.JFrame {
         panneau_info_partie.setVisible(true);
         initialiserPartie();
         panneau_grille.repaint();
-        btn_start.setEnabled(false);
+        btn_start.setEnabled(false); //on empeche le joueur de pourvoir recliquer
+                                       //sur le bouton demarrer lorsque la partie est lancee
 
     }//GEN-LAST:event_btn_startActionPerformed
-
+    //bouton "2"
     private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
         // TODO add your handling code here:
         jouerDansColonne(1);
@@ -402,21 +412,27 @@ public class SP4_graphique extends javax.swing.JFrame {
             plateau.supprimerDesintegrateur(ligne, indice_colonne);
         }
 
-        panneau_grille.repaint();
+        panneau_grille.repaint(); //réactualisation du tableau
 
+        //on indique le nombre de desintegrateur de chaque joueur
+        //les ""servent à passer la parenthèse en mode "String" 
         lbl_j1_desint.setText(listeJoueurs[0].getNombreDesintegrateurs() + "");
         lbl_j2_desint.setText(listeJoueurs[1].getNombreDesintegrateurs() + "");
 
+        //verifiaction des condition pour gagner de chaque joueur
         boolean vict_j1 = plateau.etreGagnantePourCouleur(listeJoueurs[0].couleur);
         boolean vict_j2 = plateau.etreGagnantePourCouleur(listeJoueurs[1].couleur);
 
+        //message lorsque seulement un joueur à gagner
         if (vict_j1 && !vict_j2) {
             textMessage.setText("Victoire de " + listeJoueurs[0].nom);
         }
         if (vict_j2 && !vict_j1) {
             textMessage.setText("Victoire de " + listeJoueurs[1].nom);
         }
-
+        
+        //message quand les deux joueurs ont gagne 
+        //exemple suite à l'utilisation d'un desintagrateur ou de la recuperation d'un jeton
         if (vict_j1 && vict_j2) {
             if (joueurCourant == listeJoueurs[0]) {
                 textMessage.setText("Victoire de " + listeJoueurs[1].nom + "(faute de jeu de l'autre joueur)");
@@ -475,7 +491,8 @@ public class SP4_graphique extends javax.swing.JFrame {
     }
 
     public void initialiserPartie() {
-
+        
+        //choix du nom des joueurs
         String nomJoueur1 = nom_joueur1.getText();
         joueur J1 = new joueur(nomJoueur1);
 
@@ -488,12 +505,13 @@ public class SP4_graphique extends javax.swing.JFrame {
         listeJoueurs[0] = J1;
         listeJoueurs[1] = J2;
 
+        //partie de code de methode initialiserPartie() dans la class partie
         attribuerCouleurAuxJoueurs();
-
         creerEtAffecterJeton(listeJoueurs[0]);
         creerEtAffecterJeton(listeJoueurs[1]);
         placerTrousNoirsEtDesintegrateur();
 
+        //affichage des labels contenuent dans l'interface sur les infos des joueurs
         lbl_j1_nom.setText(nomJoueur1);
         lbl_j2_nom.setText(nomJoueur2);
         lbl_j1_couleur.setText(J1.couleur);
@@ -501,7 +519,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         lbl_j1_desint.setText(J1.getNombreDesintegrateurs() + "");
         lbl_j2_desint.setText(J2.getNombreDesintegrateurs() + "");
 
-        //determine qui est le premier joueur
+        //determine qui est le premier joueur + affichage dans le dernier panel
         Random r = new Random();
         boolean le_premier = r.nextBoolean();
         if (le_premier) {
@@ -513,6 +531,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         lbl_jcourant.setText(joueurCourant.nom);
     }
 
+    //copier coller de methode de la class partie
     public void creerEtAffecterJeton(joueur J1) {
         String couleur = J1.LireCouleur();
         for (int i = 0; i < 30; i++) {

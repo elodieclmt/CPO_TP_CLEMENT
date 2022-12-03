@@ -11,9 +11,10 @@ package sp4_console_bras_clement;
  */
 public class CelluleDeGrille {
   
+    //on enleve les private pour les utiliser dans l'interface
     Jeton jetonCourant;
-    private boolean avoirTrouNoir;
-    private boolean avoirDesintegrateur;
+    boolean avoirTrouNoir;
+    boolean avoirDesintegrateur;
 
     /**
      *constructeur qui initialise par défaux les valeur des attributs à nulle ou faux 
