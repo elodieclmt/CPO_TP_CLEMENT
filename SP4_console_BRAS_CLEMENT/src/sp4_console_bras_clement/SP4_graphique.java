@@ -1,6 +1,7 @@
 package sp4_console_bras_clement;
 
 import java.util.Random;
+import java.util.Scanner;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -70,7 +71,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         lbl_jcourant = new javax.swing.JLabel();
         message = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textMessage = new javax.swing.JTextArea();
         btn_col_0 = new javax.swing.JButton();
         btn_col_1 = new javax.swing.JButton();
         btn_col_2 = new javax.swing.JButton();
@@ -166,9 +167,9 @@ public class SP4_graphique extends javax.swing.JFrame {
         lbl_jcourant.setText("nomjoueur");
         panneau_info_partie.add(lbl_jcourant, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        message.setViewportView(jTextArea1);
+        textMessage.setColumns(20);
+        textMessage.setRows(5);
+        message.setViewportView(textMessage);
 
         panneau_info_partie.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, 100));
 
@@ -180,6 +181,11 @@ public class SP4_graphique extends javax.swing.JFrame {
         });
 
         btn_col_1.setLabel("2");
+        btn_col_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_1ActionPerformed(evt);
+            }
+        });
 
         btn_col_2.setLabel("3");
         btn_col_2.addActionListener(new java.awt.event.ActionListener() {
@@ -280,26 +286,38 @@ public class SP4_graphique extends javax.swing.JFrame {
 
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(0);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_0ActionPerformed
-
+ 
     private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(2);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_2ActionPerformed
 
     private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(3);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_3ActionPerformed
 
     private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(4);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_4ActionPerformed
 
     private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(5);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_5ActionPerformed
 
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
         // TODO add your handling code here:
+        jouerDansColonne(6);
+        joueurSuivant();
     }//GEN-LAST:event_btn_col_6ActionPerformed
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
@@ -313,6 +331,63 @@ public class SP4_graphique extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_startActionPerformed
 
+    private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
+        // TODO add your handling code here:
+        jouerDansColonne(1);
+        joueurSuivant();
+    }//GEN-LAST:event_btn_col_1ActionPerformed
+
+    public boolean jouerDansColonne( int indice_colonne){
+        
+        //ajout d'un jeton de la couleur du joueur dans la ligne la plus basse
+        //de la colonne choisis par le joueur 
+        int ligne = plateau.ajouterJetonDansColonne(joueurCourant.jouerJeton(), indice_colonne);
+
+        //vérification de laprésence ou non de trou noir ou désintégrateur
+        //sur la case où est tombé le jeton
+        if (plateau.presenceTrouNoir(ligne, indice_colonne) == true) {
+            plateau.supprimerJeton(ligne, indice_colonne);
+            plateau.supprimerTrouNoir(ligne, indice_colonne);
+        }
+        if (plateau.presenceDesintegrateur(ligne, indice_colonne) == true) {
+            joueurCourant.obtenirDesintegrateur();
+            plateau.supprimerDesintegrateur(ligne, indice_colonne);
+        }
+        
+        panneau_grille.repaint();
+        
+        lbl_j1_desint.setText(listeJoueurs[0].getNombreDesintegrateurs()+"");
+        lbl_j2_desint.setText(listeJoueurs[1].getNombreDesintegrateurs()+"");
+        
+        boolean vict_j1 = plateau.etreGagnantePourCouleur(listeJoueurs[0].couleur);
+        boolean vict_j2 = plateau.etreGagnantePourCouleur(listeJoueurs[1].couleur);
+        
+        if (vict_j1 && ! vict_j2)textMessage.setText("Victoire de "+ listeJoueurs[0].nom);
+        if (vict_j2 && ! vict_j1)textMessage.setText("Victoire de "+ listeJoueurs[1].nom);
+        
+        if (vict_j1 &&  vict_j2){
+            if(joueurCourant == listeJoueurs[0]){ 
+                textMessage.setText("Victoire de "+ listeJoueurs[1].nom+"(faute de jeu de l'autre joueur)");
+            }else{
+                textMessage.setText("Victoire de "+ listeJoueurs[0].nom +"(faute de jeu de l'autre joueur");;
+            }
+        }
+        
+        return true;
+    }
+    
+    
+    //méthode qui permet de changer de joueur lorsq'ils ont jouer
+    public void joueurSuivant(){
+        if(joueurCourant == listeJoueurs[0]){
+            joueurCourant = listeJoueurs[1];
+            lbl_jcourant.setText(joueurCourant.nom);
+        }else{
+            joueurCourant = listeJoueurs[0];
+            lbl_jcourant.setText(joueurCourant.nom);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -475,7 +550,6 @@ public class SP4_graphique extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbl_j1_couleur;
     private javax.swing.JLabel lbl_j1_desint;
     private javax.swing.JLabel lbl_j1_nom;
@@ -490,5 +564,6 @@ public class SP4_graphique extends javax.swing.JFrame {
     private javax.swing.JPanel panneau_grille;
     private javax.swing.JPanel panneau_info_joueurs;
     private javax.swing.JPanel panneau_info_partie;
+    private javax.swing.JTextArea textMessage;
     // End of variables declaration//GEN-END:variables
 }
