@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Partie {
 
-    private joueur[] listeJoueurs = new joueur[2];
+    joueur[] listeJoueurs = new joueur[2];
     private joueur joueurCourant;
     private PlateauDeJeu plateau;
 

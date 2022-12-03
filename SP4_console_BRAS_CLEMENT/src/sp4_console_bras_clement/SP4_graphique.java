@@ -1,5 +1,7 @@
 package sp4_console_bras_clement;
 
+import java.util.Random;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,8 +13,8 @@ package sp4_console_bras_clement;
  */
 public class SP4_graphique extends javax.swing.JFrame {
 
-    private joueur[] listeJoueurs = new joueur[2];
-    private joueur joueurCourant;
+    joueur[] listeJoueurs = new joueur[2];
+    joueur joueurCourant;
     
     PlateauDeJeu plateau = new PlateauDeJeu();
     
@@ -62,7 +64,7 @@ public class SP4_graphique extends javax.swing.JFrame {
         lbl_j2_couleur = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        lbl_j2_nom1 = new javax.swing.JLabel();
+        lbl_j2_nom = new javax.swing.JLabel();
         panneau_info_partie = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -148,8 +150,8 @@ public class SP4_graphique extends javax.swing.JFrame {
         jLabel11.setText("Joueur 2 :");
         panneau_info_joueurs.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
-        lbl_j2_nom1.setText("nomjoueur2");
-        panneau_info_joueurs.add(lbl_j2_nom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
+        lbl_j2_nom.setText("nomjoueur2");
+        panneau_info_joueurs.add(lbl_j2_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, -1, -1));
 
         panneau_info_partie.setBackground(new java.awt.Color(204, 255, 204));
         panneau_info_partie.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -305,6 +307,9 @@ public class SP4_graphique extends javax.swing.JFrame {
         //l'on appuis sur le bouton démarrer
         panneau_info_joueurs.setVisible(true);
         panneau_info_partie.setVisible(true);
+        initialiserPartie();
+        panneau_grille.repaint();
+        btn_start.setEnabled(false);
         
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -342,6 +347,112 @@ public class SP4_graphique extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void initialiserPartie() {
+        
+        String nomJoueur1 = nom_joueur1.getText();
+        joueur J1 = new joueur(nomJoueur1);
+        
+         String nomJoueur2 = nom_joueur2.getText();
+        joueur J2 = new joueur(nomJoueur2);
+        
+        System.out.println(J1.nom +  " est de couleur " + J1.couleur);
+        System.out.println(J2.nom +  " est de couleur " + J2.couleur);
+        
+        listeJoueurs[0]=J1;
+        listeJoueurs[1]=J2;
+        
+        attribuerCouleurAuxJoueurs();
+        
+        creerEtAffecterJeton(listeJoueurs[0]);
+        creerEtAffecterJeton(listeJoueurs[1]);
+        placerTrousNoirsEtDesintegrateur();
+        
+        lbl_j1_nom.setText(nomJoueur1);
+        lbl_j2_nom.setText(nomJoueur2);
+        lbl_j1_couleur.setText(J1.couleur);
+        lbl_j2_couleur.setText(J2.couleur);
+        lbl_j1_desint.setText(J1.getNombreDesintegrateurs()+"");
+        lbl_j2_desint.setText(J2.getNombreDesintegrateurs()+"");
+        
+        //determine qui est le premier joueur
+        Random r = new Random();
+        boolean le_premier = r.nextBoolean();
+        if (le_premier){
+            joueurCourant = listeJoueurs[0];
+        }
+        else{
+            joueurCourant = listeJoueurs[0];
+        }
+        
+        lbl_jcourant.setText(joueurCourant.nom);
+    }
+    
+    public void creerEtAffecterJeton(joueur J1) {
+        String couleur = J1.LireCouleur();
+        for (int i = 0; i < 30; i++) {
+            Jeton jeton = new Jeton(couleur);
+            J1.ajouterJeton(jeton);
+            i += 1;
+        }
+
+    }
+    
+    public void placerTrousNoirsEtDesintegrateur() {
+        Random ran = new Random();
+        int ligne = ran.nextInt(6);
+        int colonne = ran.nextInt(7);
+        int i = 0;
+        int j = 0;
+        int k=0;
+
+        while (i < 3) {
+            while (plateau.presenceTrouNoir(ligne, colonne) == true || plateau.presenceDesintegrateur(ligne, colonne) == true) {
+                ligne = ran.nextInt(6);
+                colonne = ran.nextInt(7);
+            }
+            plateau.placerTrouNoir(ligne, colonne);
+            plateau.placerDesintegrateur(ligne, colonne);
+            i += 1;
+        }
+
+        while (j < 2) {
+            while (plateau.presenceTrouNoir(ligne, colonne) == true || plateau.presenceDesintegrateur(ligne, colonne) == true) {
+                ligne = ran.nextInt(6);
+                colonne = ran.nextInt(7);
+            }
+            plateau.placerTrouNoir(ligne, colonne);
+
+            j += 1;
+        }
+
+        while (k < 2) {
+            while (plateau.presenceTrouNoir(ligne, colonne) == true || plateau.presenceDesintegrateur(ligne, colonne) == true) {
+                ligne = ran.nextInt(6);
+                colonne = ran.nextInt(7);
+            }
+            plateau.placerDesintegrateur(ligne, colonne);
+
+            k += 1;
+        }
+    }
+    
+    public void attribuerCouleurAuxJoueurs() {
+        Random couleur = new Random();
+        int choix = couleur.nextInt(1);
+        if (choix == 1) {
+            listeJoueurs[0].affecterCouleur("jaune");
+            listeJoueurs[1].affecterCouleur("rouge");
+        } else {
+            listeJoueurs[1].affecterCouleur("jaune");
+            listeJoueurs[0].affecterCouleur("rouge");
+        }
+
+    }
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_col_0;
@@ -370,7 +481,7 @@ public class SP4_graphique extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_j1_nom;
     private javax.swing.JLabel lbl_j2_couleur;
     private javax.swing.JLabel lbl_j2_desint;
-    private javax.swing.JLabel lbl_j2_nom1;
+    private javax.swing.JLabel lbl_j2_nom;
     private javax.swing.JLabel lbl_jcourant;
     private javax.swing.JScrollPane message;
     private javax.swing.JTextField nom_joueur1;

@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * @author Elodie
  */
 public class joueur {
-    
-    private String nom;
-    private String couleur;
+    //on enleve les private pour avoir acces dans l'interface graphique
+     String nom;
+     String couleur;
     private ArrayList<Jeton> reserveJeton = new ArrayList<Jeton>();
     private int nombreDesintegrateurs;
 
