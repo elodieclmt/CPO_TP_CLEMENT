@@ -15,6 +15,11 @@ public class TP_LightsOff_BRAS_CLEMENT {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Partie p1 = new Partie();
+        p1.LancerPartie();
+        
+        
     }
     
 }
