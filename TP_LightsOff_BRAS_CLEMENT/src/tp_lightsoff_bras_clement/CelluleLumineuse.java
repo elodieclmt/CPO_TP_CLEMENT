@@ -1,5 +1,7 @@
 package tp_lightsoff_bras_clement;
 
+import java.util.Random;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -17,8 +19,15 @@ public class CelluleLumineuse {
      * Initialisation de la valeur de la cellule (allumée ou éteinte)
      * @param etat
      */
-    public CelluleLumineuse(boolean etat) {
-        this.etat = etat;
+    public CelluleLumineuse() {
+        Random ran = new Random();
+        int choix = ran.nextInt(2);
+        if( choix ==1 ){
+            etat = true;
+        }
+        else{
+            etat=false;
+        }
     }
 
     /**
@@ -48,12 +57,12 @@ public class CelluleLumineuse {
      * passe les cellules allumées à éteintes et inversement
      * @param valeur
      */
-    public void ChangeTonEtat(boolean valeur){
-        if (valeur == true){
-            valeur = false;
+    public void ChangeTonEtat(){
+        if (etat == true){
+            etat = false;
         }
         else{
-            valeur = true;
+            etat = true;
         } 
     }
 
