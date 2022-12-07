@@ -8,19 +8,6 @@ package tp_lightsoff_bras_clement;
  *
  * @author Elodie
  */
-public class Joueur {
-    
-    String nom;
-    int score;
-
-    public Joueur(String nom, int score) {
-        this.nom = nom;
-        this.score = 0;
-    }
-    
-    public void NbScore(){
-        score += 1;
-    }
-    
+public class Partie {
     
 }
