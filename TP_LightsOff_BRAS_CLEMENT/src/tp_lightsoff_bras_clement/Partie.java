@@ -42,6 +42,7 @@ public class Partie {
             
             plateau.CliqueCellule(lgn, cln);
             j1.NbScore();
+            plateau.afficherGrilleSurConsole();
         }
         
         System.out.println("Bravo vous avez gagne en "+ j1.score + "clics !!");

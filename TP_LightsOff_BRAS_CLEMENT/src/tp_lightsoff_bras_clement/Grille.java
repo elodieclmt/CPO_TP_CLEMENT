@@ -91,61 +91,26 @@ public class Grille {
         }
     }
       
+    /**
+     * methode qui permet de changer les valeurs (cellule allumée ou eteinte) d'une case
+     * choisi et de celle situtee à cote
+     * @param x
+     * @param y
+     */
     public void CliqueCellule(int x,int y){
-        for (int i=0 ;i<5 ; i++){
-            for(int j=0 ; j<5 ;j++){
-                if(i==0 &&j==0){ //on change l'état des cellules dans le coin en bas à gauche
-                    grille[x][y].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                }
-                if(i==0 &&j==4){ //on change l'état des cellules dans le coin en bas à droite
-                    grille[x][y].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                }
-                if(i==4 &&j==0){ //on change l'état des cellules dans le coin en haut à gauche
-                    grille[x][y].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                }
-                if(i==4 &&j==4){ //on change l'état des cellules dans le coin en haut à droite
-                    grille[x][y].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                }
-                if( j==0 && (0<i && i<4 )){ //changement pour la colonne 0
-                    grille[x][y].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                }
-                if( j==4 && (0<i && i<4 )){ //changement pour la colonne 4
-                    grille[x][y].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                }
-                if( i==0 && (0<j && j<4)){ //changement pour la ligne 0
-                    grille[x][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                }
-                if( i==4 && (0<j && j<4)){ //changement pour la ligne 4
-                    grille[x][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                }
-                if((1<i && i<4)&&(1<i && i<4)){ // pour le reste de la grille
-                    grille[x][y].ChangeTonEtat();
-                    grille[x][y-1].ChangeTonEtat();
-                    grille[x][y+1].ChangeTonEtat();
-                    grille[x-1][y].ChangeTonEtat();
-                    grille[x+1][y].ChangeTonEtat();
-                }
-            }
+        grille[x][y].ChangeTonEtat();
+        if (x>0){ // verifie qu'on ne se situe pas sur la ligne la plus basse
+          grille[x-1][y].ChangeTonEtat();
         }
+        if (x<4){ // verifie qu'on ne se situe pas sur la ligne la plus haute
+          grille[x+1][y].ChangeTonEtat();
+        }
+        if (y>0){ // verifie qu'on ne se situe pas sur la colonne la plus a gauche
+          grille[x][y-1].ChangeTonEtat();
+        }
+        if (y<4){ // verifie qu'on ne se situe pas sur la colonne la plus a droite
+          grille[x][y+1].ChangeTonEtat();
+        }
+        
     }  
 }
