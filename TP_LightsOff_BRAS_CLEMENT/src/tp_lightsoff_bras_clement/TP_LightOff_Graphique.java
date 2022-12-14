@@ -4,6 +4,8 @@
  */
 package tp_lightsoff_bras_clement;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Elodie
@@ -20,8 +22,8 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         initComponents();
         
         for (int i=4; i>=0 ; i--){
-           for (int j=0; j<5; i++){
-               CellulesGraphique cellGraph = new CellulesGraphique();
+           for (int j=0; j<5; j++){
+               CellulesGraphique cellGraph = new CellulesGraphique(plateau.grille[i][j]);
                grilleDeJeu.add(cellGraph);
            } 
         }
@@ -43,10 +45,10 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Text_Nom_Joueur = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Text_Score = new javax.swing.JTextField();
         affichage = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jbt_demarrer = new javax.swing.JButton();
+        nb_score = new javax.swing.JLabel();
         jbt_c4 = new javax.swing.JButton();
         jbt_c0 = new javax.swing.JButton();
         jbt_c1 = new javax.swing.JButton();
@@ -62,7 +64,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         grilleDeJeu.setBackground(new java.awt.Color(255, 255, 255));
-        grilleDeJeu.setLayout(new java.awt.GridLayout(1, 5, 5, 0));
+        grilleDeJeu.setLayout(new java.awt.GridLayout(5, 5));
         getContentPane().add(grilleDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 480, 480));
 
         info_joueur.setBackground(new java.awt.Color(204, 204, 255));
@@ -80,12 +82,6 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
 
         jLabel3.setText("Score :");
 
-        Text_Score.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Text_ScoreActionPerformed(evt);
-            }
-        });
-
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         affichage.setViewportView(jTextArea1);
@@ -98,9 +94,6 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
             info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_joueurLayout.createSequentialGroup()
                 .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(info_joueurLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(affichage, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, info_joueurLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,13 +102,17 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(info_joueurLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(16, 16, 16)
-                                .addComponent(Text_Score, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                            .addGroup(info_joueurLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(Text_Nom_Joueur)))))
+                                .addComponent(Text_Nom_Joueur))
+                            .addGroup(info_joueurLayout.createSequentialGroup()
+                                .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(affichage, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(info_joueurLayout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(nb_score, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 12, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(info_joueurLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -131,18 +128,18 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(Text_Nom_Joueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(28, 28, 28)
                 .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Text_Score, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(nb_score))
+                .addGap(36, 36, 36)
                 .addComponent(affichage, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbt_demarrer)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        getContentPane().add(info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
+        getContentPane().add(info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 190, -1));
 
         jbt_c4.setText("5");
         jbt_c4.addActionListener(new java.awt.event.ActionListener() {
@@ -231,10 +228,6 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Text_Nom_JoueurActionPerformed
 
-    private void Text_ScoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_ScoreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Text_ScoreActionPerformed
-
     private void jbt_c4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_c4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbt_c4ActionPerformed
@@ -309,10 +302,17 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void LancerPartie(){
 
+        //demmande au joueur de choisir son nom
+        String NomJoueur = Text_Nom_Joueur.getText();
+        j1.nom = NomJoueur;
+        
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Text_Nom_Joueur;
-    private javax.swing.JTextField Text_Score;
     private javax.swing.JScrollPane affichage;
     private javax.swing.JPanel grilleDeJeu;
     private javax.swing.JPanel info_joueur;
@@ -331,5 +331,6 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
     private javax.swing.JButton jbt_l2;
     private javax.swing.JButton jbt_l3;
     private javax.swing.JButton jbt_l4;
+    private javax.swing.JLabel nb_score;
     // End of variables declaration//GEN-END:variables
 }
