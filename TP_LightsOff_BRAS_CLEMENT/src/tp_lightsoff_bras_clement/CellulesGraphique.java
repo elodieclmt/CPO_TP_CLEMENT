@@ -16,6 +16,7 @@ public class CellulesGraphique extends JButton {
     CelluleLumineuse CelluleGraphique;
     
     ImageIcon img_eteint = new javax.swing.ImageIcon(getClass().getResource("/images/celluleVide.png"));
+    ImageIcon img_alum = new javax.swing.ImageIcon(getClass().getResource("/images/jetonJaune.png"));
     
     public CellulesGraphique(CelluleLumineuse uneCellule){
      CelluleGraphique =  uneCellule;
@@ -24,7 +25,12 @@ public class CellulesGraphique extends JButton {
  @Override
 public void paintComponent (Graphics G){
    super.paintComponent(G);
-   setIcon(img_eteint);
+   if (CelluleGraphique.LireEtat() == true){
+       setIcon(img_alum);
+   }else{
+     setIcon(img_eteint);  
+   }
+   
 }   
 }
 

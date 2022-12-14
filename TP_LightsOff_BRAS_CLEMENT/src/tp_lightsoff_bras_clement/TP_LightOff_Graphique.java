@@ -4,6 +4,8 @@
  */
 package tp_lightsoff_bras_clement;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 /**
@@ -12,20 +14,79 @@ import java.util.Scanner;
  */
 public class TP_LightOff_Graphique extends javax.swing.JFrame {
 
-        Grille plateau = new Grille();
-        Joueur j1 = new Joueur();
-         
+    Grille plateau = new Grille();
+    Joueur j1 = new Joueur();
+
     /**
      * Creates new form TP_LightOff_Graphique
      */
     public TP_LightOff_Graphique() {
         initComponents();
+        grilleDeJeu.setVisible(false);
         
-        for (int i=4; i>=0 ; i--){
-           for (int j=0; j<5; j++){
-               CellulesGraphique cellGraph = new CellulesGraphique(plateau.grille[i][j]);
-               grilleDeJeu.add(cellGraph);
-           } 
+        
+            
+        
+        
+        for (int i = 4; i >= 0; i--) {
+            for (int j = 0; j < 5; j++) {
+                CellulesGraphique cellGraph = new CellulesGraphique(plateau.grille[i][j]);
+                int x = i;
+                int y = j;
+                cellGraph.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println(x + " " + y);
+
+
+                            plateau.CliqueCellule(x, y);
+                            grilleDeJeu.repaint();
+                            j1.NbScore();
+                            nb_score.setText(j1.score+"");
+                            
+                            if(plateau.grilleGagnante()==true){
+                                message.setText("Félicitation vous avez gagné en "+ j1.score + "coups !!");
+                            }
+                    }
+
+                });
+                grilleDeJeu.add(cellGraph);
+            }
+        }
+
+    }
+    
+    
+    
+    public boolean grilleGagnante(){
+        int tmp =0;
+        for (int i=0;i<5;i++){
+            for(int j=0; j<5;j++){
+                if(plateau.grille[i][j].LireEtat()==false){
+                     tmp +=1;
+                }
+            }
+        }
+        if(tmp==25){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void CliqueCellule(int x,int y){
+        plateau.grille[x][y].ChangeTonEtat();
+        if (x>0){ // verifie qu'on ne se situe pas sur la ligne la plus basse
+          plateau.grille[x-1][y].ChangeTonEtat();
+        }
+        if (x<4){ // verifie qu'on ne se situe pas sur la ligne la plus haute
+          plateau.grille[x+1][y].ChangeTonEtat();
+        }
+        if (y>0){ // verifie qu'on ne se situe pas sur la colonne la plus a gauche
+          plateau.grille[x][y-1].ChangeTonEtat();
+        }
+        if (y<4){ // verifie qu'on ne se situe pas sur la colonne la plus a droite
+          plateau.grille[x][y+1].ChangeTonEtat();
         }
         
     }
@@ -45,10 +106,10 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         Text_Nom_Joueur = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        affichage = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jbt_demarrer = new javax.swing.JButton();
         nb_score = new javax.swing.JLabel();
+        message = new javax.swing.JLabel();
+        mess_bienvenue = new javax.swing.JLabel();
         jbt_c4 = new javax.swing.JButton();
         jbt_c0 = new javax.swing.JButton();
         jbt_c1 = new javax.swing.JButton();
@@ -68,78 +129,39 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         getContentPane().add(grilleDeJeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 480, 480));
 
         info_joueur.setBackground(new java.awt.Color(204, 204, 255));
+        info_joueur.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Info Joueur :");
+        info_joueur.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 122, -1));
 
         jLabel2.setText("Nom :");
+        info_joueur.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 52, -1, -1));
 
         Text_Nom_Joueur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Text_Nom_JoueurActionPerformed(evt);
             }
         });
+        info_joueur.add(Text_Nom_Joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 49, 113, -1));
 
         jLabel3.setText("Score :");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        affichage.setViewportView(jTextArea1);
+        info_joueur.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
         jbt_demarrer.setText("Démarrer Partie");
+        jbt_demarrer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt_demarrerActionPerformed(evt);
+            }
+        });
+        info_joueur.add(jbt_demarrer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
-        javax.swing.GroupLayout info_joueurLayout = new javax.swing.GroupLayout(info_joueur);
-        info_joueur.setLayout(info_joueurLayout);
-        info_joueurLayout.setHorizontalGroup(
-            info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_joueurLayout.createSequentialGroup()
-                .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, info_joueurLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, info_joueurLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(info_joueurLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(Text_Nom_Joueur))
-                            .addGroup(info_joueurLayout.createSequentialGroup()
-                                .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(affichage, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(info_joueurLayout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nb_score, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGap(0, 12, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(info_joueurLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jbt_demarrer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        info_joueurLayout.setVerticalGroup(
-            info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(info_joueurLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Text_Nom_Joueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(info_joueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(nb_score))
-                .addGap(36, 36, 36)
-                .addComponent(affichage, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbt_demarrer)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        nb_score.setAutoscrolls(true);
+        info_joueur.add(nb_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 99, 20));
+        info_joueur.add(message, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 152, 57));
+        info_joueur.add(mess_bienvenue, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 100, 160, 20));
 
-        getContentPane().add(info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 190, -1));
+        getContentPane().add(info_joueur, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 220, 310));
 
         jbt_c4.setText("5");
         jbt_c4.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +290,17 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbt_l1ActionPerformed
 
+    private void jbt_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_demarrerActionPerformed
+        // TODO add your handling code here:
+        grilleDeJeu.setVisible(true);
+        
+        //demmande au joueur de choisir son nom
+        String NomJoueur = Text_Nom_Joueur.getText();
+        j1.nom = NomJoueur;
+        mess_bienvenue.setText("Bienvenue "+ j1.nom + " !" );
+        grilleDeJeu.repaint();
+    }//GEN-LAST:event_jbt_demarrerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -302,24 +335,15 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void LancerPartie(){
 
-        //demmande au joueur de choisir son nom
-        String NomJoueur = Text_Nom_Joueur.getText();
-        j1.nom = NomJoueur;
-        
-        
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Text_Nom_Joueur;
-    private javax.swing.JScrollPane affichage;
     private javax.swing.JPanel grilleDeJeu;
     private javax.swing.JPanel info_joueur;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbt_c0;
     private javax.swing.JButton jbt_c1;
     private javax.swing.JButton jbt_c2;
@@ -331,6 +355,8 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
     private javax.swing.JButton jbt_l2;
     private javax.swing.JButton jbt_l3;
     private javax.swing.JButton jbt_l4;
+    private javax.swing.JLabel mess_bienvenue;
+    private javax.swing.JLabel message;
     private javax.swing.JLabel nb_score;
     // End of variables declaration//GEN-END:variables
 }

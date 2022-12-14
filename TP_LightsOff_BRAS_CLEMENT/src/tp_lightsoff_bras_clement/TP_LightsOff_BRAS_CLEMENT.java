@@ -13,7 +13,7 @@ public class TP_LightsOff_BRAS_CLEMENT {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void mahin(String[] args) {
         // TODO code application logic here
         
        // Partie p1 = new Partie();
