@@ -22,9 +22,18 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
      */
     public TP_LightOff_Graphique() {
         initComponents();
+        //affichage avant que la patie démarre
         grilleDeJeu.setVisible(false);
-        
-        
+        jbt_c0.setVisible(false);
+        jbt_c1.setVisible(false);
+        jbt_c2.setVisible(false);
+        jbt_c3.setVisible(false);
+        jbt_c4.setVisible(false);
+        jbt_l0.setVisible(false);
+        jbt_l1.setVisible(false);
+        jbt_l2.setVisible(false);
+        jbt_l3.setVisible(false);
+        jbt_l4.setVisible(false);
             
         
         
@@ -177,7 +186,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_c0ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_c0, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        getContentPane().add(jbt_c0, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         jbt_c1.setText("2");
         jbt_c1.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +194,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_c1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+        getContentPane().add(jbt_c1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
         jbt_c2.setText("3");
         jbt_c2.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +210,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_c3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_c3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+        getContentPane().add(jbt_c3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
 
         jbt_l0.setText("5");
         jbt_l0.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +218,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_l0ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_l0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, -1, -1));
+        getContentPane().add(jbt_l0, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, -1, -1));
 
         jbt_l4.setText("1");
         jbt_l4.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +226,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_l4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_l4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        getContentPane().add(jbt_l4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         jbt_l3.setText("2");
         jbt_l3.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +234,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_l3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_l3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
+        getContentPane().add(jbt_l3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         jbt_l2.setText("3");
         jbt_l2.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +250,7 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
                 jbt_l1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jbt_l1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, -1));
+        getContentPane().add(jbt_l1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -292,7 +301,18 @@ public class TP_LightOff_Graphique extends javax.swing.JFrame {
 
     private void jbt_demarrerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_demarrerActionPerformed
         // TODO add your handling code here:
+        //affichage apres avoir cliquer sur le bouton demarrer
         grilleDeJeu.setVisible(true);
+        jbt_c0.setVisible(true);
+        jbt_c1.setVisible(true);
+        jbt_c2.setVisible(true);
+        jbt_c3.setVisible(true);
+        jbt_c4.setVisible(true);
+        jbt_l0.setVisible(true);
+        jbt_l1.setVisible(true);
+        jbt_l2.setVisible(true);
+        jbt_l3.setVisible(true);
+        jbt_l4.setVisible(true);
         
         //demmande au joueur de choisir son nom
         String NomJoueur = Text_Nom_Joueur.getText();
